@@ -16,13 +16,15 @@ namespace se.skoggy.utils.Ranges
 
         public Color Random() 
         {
-            Color c = new Color(
-                Rand.Next(min.R, max.R),
-                Rand.Next(min.G, max.G),
-                Rand.Next(min.B, max.B),
-                Rand.Next(min.A, max.A)
-            );
-            return c;
+            if (Rand.Next() > 0.5f)
+                return max;
+            return min;
+        }
+
+        public void Set(ColorRange range)
+        {
+            this.min = range.min;
+            this.max = range.max;
         }
     }
 }

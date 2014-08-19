@@ -29,5 +29,11 @@ namespace se.skoggy.utils.Ranges
         {
             return Vector2.Lerp(min, max, Rand.Next());
         }
+
+        public void Set(Vector2Range range)
+        {
+            this.min = range.min;
+            this.max = range.max;
+        }
     }
 }

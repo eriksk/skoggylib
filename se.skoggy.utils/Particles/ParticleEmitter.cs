@@ -16,11 +16,25 @@ namespace se.skoggy.utils.Particles
         public ParticleEmitterSettings settings;
         public TimerTrig spawnTimer;
         public Pool<Particle> particles;
+        private int spawned;
 
         public ParticleEmitter(ParticleEmitterSettings settings)
         {
             this.settings = settings;
             spawnTimer = new TimerTrig(settings.frequency.Random());
+            particles = new Pool<Particle>(settings.capacity);
+            Reset();
+        }
+
+        public void Reset()
+        {
+            spawned = 0;
+            particles.Clear();
+        }
+
+        public void ResetAndRecreate()
+        {
+            Reset();
             particles = new Pool<Particle>(settings.capacity);
         }
 
@@ -51,13 +65,30 @@ namespace se.skoggy.utils.Particles
             p.color = p.startColor;
 
             spawnTimer.Set(settings.frequency.Random());
+
+            spawned++;
         }
 
         public void Update(float dt) 
         {
             if (spawnTimer.IsTrigged(dt)) 
             {
-                Spawn();
+                if (settings.loop)
+                {
+                    Spawn();
+                }
+                else 
+                {
+                    if (spawned >= settings.capacity)
+                    {
+                        // Do nothing, this is done
+                        // TODO: done flag or dynamic property
+                    }
+                    else
+                    {
+                        Spawn();
+                    }
+                }
             }
 
             for (int i = 0; i < particles.Count; i++)
@@ -71,6 +102,9 @@ namespace se.skoggy.utils.Particles
                 else 
                 {
                     float progress = p.current / p.duration;
+
+                    p.velocity.X += settings.gravity.force.X * dt;
+                    p.velocity.Y += settings.gravity.force.Y * dt;
 
                     p.position.X += p.velocity.X * dt;
                     p.position.Y += p.velocity.Y * dt;

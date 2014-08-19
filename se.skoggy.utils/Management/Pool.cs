@@ -25,6 +25,11 @@ namespace se.skoggy.utils.Management
             get { return items[index]; }
         }
 
+        public void Clear()
+        {
+            count = 0;
+        }
+
         private void Initialize()
         {
             items = new T[capacity];

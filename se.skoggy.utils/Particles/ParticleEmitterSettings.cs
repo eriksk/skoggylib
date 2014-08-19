@@ -10,6 +10,7 @@ namespace se.skoggy.utils.Particles
 {
     public class ParticleEmitterSettings
     {
+        public string Name { get; set; }
         public BlendState blendState;
         public FloatRange frequency;
         public FloatRange lifeTime;
@@ -17,6 +18,7 @@ namespace se.skoggy.utils.Particles
         public Vector2Range position;
         public Vector2Range velocity;
         public Vector2Range startScale, endScale;
+        public Gravity gravity;
         public FloatRange rotation;
         public int[] sources;
         public bool loop;
@@ -24,6 +26,7 @@ namespace se.skoggy.utils.Particles
 
         public ParticleEmitterSettings()
         {
+            Name = "";
             loop = true;
             blendState = BlendState.AlphaBlend;
             frequency = new FloatRange();
@@ -35,6 +38,7 @@ namespace se.skoggy.utils.Particles
             rotation = new FloatRange();
             startColor = new ColorRange() { min = Color.White, max = Color.White };
             endColor = new ColorRange() { min = Color.White, max = Color.White };
+            gravity = new Gravity();
             sources = new int[] { 0 };
             capacity = 64;
         }
@@ -42,6 +46,25 @@ namespace se.skoggy.utils.Particles
         public int RandomSource()
         {
             return sources[Rand.Next(sources.Length)];
+        }
+
+        public void Set(ParticleEmitterSettings settings)
+        {
+            this.blendState = settings.blendState;
+            this.frequency.Set(settings.frequency);
+            this.lifeTime.Set(settings.lifeTime);
+            this.startColor.Set(settings.startColor);
+            this.endColor.Set(settings.endColor);
+            this.position.Set(settings.position);
+            this.velocity.Set(settings.velocity);
+            this.startScale.Set(settings.startScale);
+            this.endScale.Set(settings.endScale);
+            this.gravity.Set(settings.gravity);
+            this.rotation.Set(settings.rotation);
+            this.sources = settings.sources;
+            this.loop = settings.loop;
+            this.capacity = settings.capacity;
+            this.Name = settings.Name;
         }
     }
 }

@@ -17,5 +17,11 @@ namespace se.skoggy.utils.Ranges
         {
             return Rand.Next(min, max);
         }
+
+        public void Set(FloatRange range)
+        {
+            this.min = range.min;
+            this.max = range.max;
+        }
     }
 }

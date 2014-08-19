@@ -16,16 +16,31 @@ namespace se.skoggy.utils.Particles
 
         public ParticleSystem(ParticleSystemSettings settings)
         {
-            this.settings = settings;
-            Initialize();
+            Initialize(settings);
         }
 
-        private void Initialize()
+        public void Initialize(ParticleSystemSettings settings)
         {
             emitters = new List<ParticleEmitter>();
             foreach (var emitterSettings in settings.emitters)
             {
                 emitters.Add(new ParticleEmitter(emitterSettings));
+            }
+        }
+
+        public void Reset()
+        {
+            foreach (var emitter in emitters)
+            {
+                emitter.Reset();
+            }
+        }
+
+        public void ResetAndRecreate()
+        {
+            foreach (var emitter in emitters)
+            {
+                emitter.ResetAndRecreate();
             }
         }
         

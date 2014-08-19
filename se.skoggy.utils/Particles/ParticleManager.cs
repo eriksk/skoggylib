@@ -24,10 +24,19 @@ namespace se.skoggy.utils.Particles
         public void Load(ContentManager content)
         {
             template = new GameObject(content.Load<Texture2D>(@"particles"));
-            sources = new Rectangle[]
-            {
-                new Rectangle(0, 0, 128, 128)
-            };
+
+            int cellSize = 128;
+            int cols = template.texture.Width / cellSize;
+            int rows = template.texture.Height / cellSize;
+
+            sources = new Rectangle[cols * rows];
+            for (int i = 0; i < cols; i++)
+			{
+                for (int j = 0; j < rows; j++)
+			    {
+                    sources[i + j * cols] = new Rectangle(i * cellSize, j * cellSize, cellSize, cellSize);			 
+			    }
+			}
         }
 
         public void AddSystem(ParticleSystem particleSystem)
