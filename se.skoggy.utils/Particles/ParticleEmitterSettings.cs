@@ -20,6 +20,7 @@ namespace se.skoggy.utils.Particles
         public Vector2Range startScale, endScale;
         public Gravity gravity;
         public FloatRange rotation;
+        public int spawnCount;
         public int[] sources;
         public bool loop;
         public int capacity;
@@ -40,6 +41,7 @@ namespace se.skoggy.utils.Particles
             endColor = new ColorRange() { min = Color.White, max = Color.White };
             gravity = new Gravity();
             sources = new int[] { 0 };
+            spawnCount = 1;
             capacity = 64;
         }
 

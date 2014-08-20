@@ -13,9 +13,12 @@ namespace se.skoggy.utils.Particles
     {
         ParticleSystemSettings settings;
         List<ParticleEmitter> emitters;
+        
+        public Vector2 position;
 
         public ParticleSystem(ParticleSystemSettings settings)
         {
+            position = Vector2.Zero;
             Initialize(settings);
         }
 
@@ -33,6 +36,22 @@ namespace se.skoggy.utils.Particles
             foreach (var emitter in emitters)
             {
                 emitter.Reset();
+            }
+        }
+
+        public void Stop()
+        {
+            foreach (var emitter in emitters)
+            {
+                emitter.Stop();
+            }
+        }
+
+        public void Play()
+        {
+            foreach (var emitter in emitters)
+            {
+                emitter.Play();
             }
         }
 
@@ -56,8 +75,9 @@ namespace se.skoggy.utils.Particles
         {
             foreach (var emitter in emitters)
             {
-                emitter.Draw(cam, spriteBatch, sources, template);
+                emitter.Draw(cam, spriteBatch, position, sources, template);
             }
         }
+
     }
 }
