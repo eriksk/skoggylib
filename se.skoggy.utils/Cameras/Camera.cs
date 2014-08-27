@@ -79,7 +79,7 @@ namespace se.skoggy.utils.Cameras
         public void SetZoom(float zoom) 
         {
             this.scale = zoom;
-            Zoom(zoom);
+            targetScale = zoom;
         }
 
         public void Zoom(float zoom)
