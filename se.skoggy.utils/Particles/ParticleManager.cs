@@ -23,7 +23,7 @@ namespace se.skoggy.utils.Particles
 
         public void Load(ContentManager content)
         {
-            template = new GameObject(content.Load<Texture2D>(@"particles"));
+            template = new GameObject(content.Load<Texture2D>(@"gfx/particles"));
 
             int cellSize = 128;
             int cols = template.texture.Width / cellSize;
@@ -57,6 +57,13 @@ namespace se.skoggy.utils.Particles
             foreach (var s in systems)
             {
                 s.Draw(spriteBatch, cam, sources, template);
+            }
+        }
+        public void Draw(SpriteBatch spriteBatch, Camera cam, Effect effect)
+        {
+            foreach (var s in systems)
+            {
+                s.Draw(spriteBatch, cam, sources, template, effect);
             }
         }
     }

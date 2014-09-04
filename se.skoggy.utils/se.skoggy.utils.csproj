@@ -52,6 +52,8 @@
     <Compile Include="Collections\Range.cs" />
     <Compile Include="GameObjects\GameObject.cs" />
     <Compile Include="GameObjects\PoolableGameObject.cs" />
+    <Compile Include="Graphics\DrawableLine.cs" />
+    <Compile Include="Graphics\DrawableRectangle.cs" />
     <Compile Include="Interpolations\Elastic.cs" />
     <Compile Include="Interpolations\Exp.cs" />
     <Compile Include="Interpolations\Fade.cs" />
@@ -64,6 +66,9 @@
     <Compile Include="Lighting\Lighting.cs" />
     <Compile Include="Lighting\Lights\Light.cs" />
     <Compile Include="Lighting\Lights\LightType.cs" />
+    <Compile Include="Logging\ConsoleLogger.cs" />
+    <Compile Include="Logging\ILogger.cs" />
+    <Compile Include="Logging\MessageType.cs" />
     <Compile Include="Management\Pool.cs" />
     <Compile Include="Metrics\TimerTrig.cs" />
     <Compile Include="Ranges\ColorRange.cs" />
@@ -79,6 +84,7 @@
     <Compile Include="Ranges\Vector2Range.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Sprites\SpriteSheet.cs" />
+    <Compile Include="Utils\MathUtils.cs" />
     <Compile Include="Utils\Rand.cs" />
     <Compile Include="Resolutions\IResolutionIndependence.cs" />
     <Compile Include="Resolutions\Resolution.cs" />

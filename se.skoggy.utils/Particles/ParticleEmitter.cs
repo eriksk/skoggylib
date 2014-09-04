@@ -139,9 +139,31 @@ namespace se.skoggy.utils.Particles
             }
         }
 
-        public void Draw(Camera cam, SpriteBatch spriteBatch, Vector2 position, Rectangle[] sources, GameObject template) 
+        public void Draw(Camera cam, SpriteBatch spriteBatch, Vector2 position, Rectangle[] sources, GameObject template)
         {
             spriteBatch.Begin(SpriteSortMode.Immediate, settings.blendState, null, null, null, null, cam.Projection);
+            for (int i = 0; i < particles.Count; i++)
+            {
+                Particle p = particles[i];
+                template.position.X = position.X + p.position.X;
+                template.position.Y = position.Y + p.position.Y;
+                template.rotation = p.rotation;
+                Rectangle source = sources[p.source];
+                template.SetSource(source.X, source.Y, source.Width, source.Height);
+                template.scale.X = p.scale.X;
+                template.scale.Y = p.scale.Y;
+                template.color.R = p.color.R;
+                template.color.G = p.color.G;
+                template.color.B = p.color.B;
+                template.color.A = p.color.A;
+                template.Draw(spriteBatch);
+            }
+            spriteBatch.End();
+        }
+
+        public void Draw(Camera cam, SpriteBatch spriteBatch, Vector2 position, Rectangle[] sources, GameObject template, Effect effect)
+        {
+            spriteBatch.Begin(SpriteSortMode.Immediate, settings.blendState, null, null, null, effect, cam.Projection);
             for (int i = 0; i < particles.Count; i++)
             {
                 Particle p = particles[i];

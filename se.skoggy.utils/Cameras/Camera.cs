@@ -9,7 +9,8 @@ namespace se.skoggy.utils.Cameras
 {
     public class Camera
     {
-        protected Vector2 position, center, target;
+        public Vector2 position, center;
+        protected Vector2 target;
         protected Interpolation movementInterpolation;
         protected float rotation, targetRotation;
         protected float scale, targetScale;
@@ -23,7 +24,15 @@ namespace se.skoggy.utils.Cameras
             scale = 1f;
             targetScale = 1f;
             movementInterpolation = Interpolation.Linear;
+            Speed = 0.05f;
+            MaxZoom = 0.1f;
+            MinZoom = 2f;
         }
+
+        public float Speed { get; set; }
+        public float MaxZoom { get; set; }
+        public float MinZoom { get; set; }
+        public float Scale { get { return scale; } }
 
         public void SetSize(int Width, int Height)
         {
@@ -35,9 +44,9 @@ namespace se.skoggy.utils.Cameras
         {
             get 
             {
-                return Matrix.CreateScale(scale) *
-                       Matrix.CreateRotationZ(rotation) * 
-                       Matrix.CreateTranslation(position.X, position.Y, 0f) * 
+                return Matrix.CreateRotationZ(rotation) * 
+                       Matrix.CreateTranslation(position.X, position.Y, 0f) *
+                       Matrix.CreateScale(scale) *
                        Matrix.CreateTranslation(center.X, center.Y, 0f);
             }
         }
@@ -65,6 +74,12 @@ namespace se.skoggy.utils.Cameras
             target.Y = y;
         }
 
+        public void MoveBy(float x, float y)
+        {
+            target.X += x;
+            target.Y += y;
+        }
+
         public void SetRotation(float rotation) 
         {
             this.rotation = rotation;
@@ -88,14 +103,15 @@ namespace se.skoggy.utils.Cameras
         }
 
         public virtual void Update(float dt)
-        {
-            float speed = 0.05f;
-            
-            position.X = movementInterpolation.Apply(position.X, target.X, speed);
-            position.Y = movementInterpolation.Apply(position.Y, target.Y, speed);
+        {            
+            position.X = movementInterpolation.Apply(position.X, target.X, Speed);
+            position.Y = movementInterpolation.Apply(position.Y, target.Y, Speed);
 
-            rotation = movementInterpolation.Apply(rotation, targetRotation, speed);
-            scale = movementInterpolation.Apply(scale, targetScale, speed);
+            rotation = movementInterpolation.Apply(rotation, targetRotation, Speed);
+            scale = movementInterpolation.Apply(scale, targetScale, Speed);
+            scale = MathHelper.Clamp(scale, MaxZoom, MinZoom);
         }
+
+
     }
 }

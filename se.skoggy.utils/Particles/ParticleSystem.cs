@@ -79,5 +79,13 @@ namespace se.skoggy.utils.Particles
             }
         }
 
+        public void Draw(SpriteBatch spriteBatch, Camera cam, Rectangle[] sources, GameObject template, Effect effect)
+        {
+            foreach (var emitter in emitters)
+            {
+                emitter.Draw(cam, spriteBatch, position, sources, template, effect);
+            }
+        }
+
     }
 }
