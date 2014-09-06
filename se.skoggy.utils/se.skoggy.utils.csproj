@@ -84,6 +84,11 @@
     <Compile Include="Ranges\Vector2Range.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Sprites\SpriteSheet.cs" />
+    <Compile Include="TMX\TmxMapData.cs" />
+    <Compile Include="TMX\TmxMapDataLoader.cs" />
+    <Compile Include="TMX\TmxMapLayer.cs" />
+    <Compile Include="TMX\TmxMapObject.cs" />
+    <Compile Include="TMX\TmxTileSet.cs" />
     <Compile Include="Utils\MathUtils.cs" />
     <Compile Include="Utils\Rand.cs" />
     <Compile Include="Resolutions\IResolutionIndependence.cs" />

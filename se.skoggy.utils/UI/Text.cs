@@ -31,6 +31,8 @@ namespace se.skoggy.utils.UI
             dirty = true;
         }
 
+        public string Content { get { return text; } set { text = value; dirty = true; } }
+
         private void Clean(SpriteFont font)
         {
             var size = font.MeasureString(text);

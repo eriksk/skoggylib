@@ -68,6 +68,18 @@ namespace se.skoggy.utils.Cameras
             Move(x, y);
         }
 
+        public void SetX(float x)
+        {
+            position.X = x;
+            target.X = x;
+        }
+
+        public void SetY(float y)
+        {
+            position.Y = y;
+            target.Y = y;
+        }
+
         public void Move(float x, float y)
         {
             target.X = x;
@@ -111,7 +123,5 @@ namespace se.skoggy.utils.Cameras
             scale = movementInterpolation.Apply(scale, targetScale, Speed);
             scale = MathHelper.Clamp(scale, MaxZoom, MinZoom);
         }
-
-
     }
 }
