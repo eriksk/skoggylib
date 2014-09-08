@@ -48,6 +48,7 @@
     <Compile Include="Animations\TreeAnimations\AnimationTranslation.cs" />
     <Compile Include="Animations\TreeAnimations\Events\PositionEvent.cs" />
     <Compile Include="Animations\TreeAnimations\Events\RotationEvent.cs" />
+    <Compile Include="Audio\Audio.cs" />
     <Compile Include="Cameras\Camera.cs" />
     <Compile Include="Collections\Range.cs" />
     <Compile Include="GameObjects\GameObject.cs" />

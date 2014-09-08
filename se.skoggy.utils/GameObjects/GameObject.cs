@@ -76,6 +76,14 @@ namespace se.skoggy.utils.GameObjects
             source.Height = height;
             return this;
         }
+        public virtual GameObject SetSource(Rectangle source)
+        {
+            this.source.X = source.X;
+            this.source.Y = source.Y;
+            this.source.Width = source.Width;
+            this.source.Height = source.Height;
+            return this;
+        }
         public virtual GameObject SetFlip(SpriteEffects flip)
         {
             this.flip = flip;
@@ -153,5 +161,6 @@ namespace se.skoggy.utils.GameObjects
         }
         
         #endregion
+
     }
 }

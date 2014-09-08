@@ -45,5 +45,13 @@ namespace se.skoggy.utils.Utils
 
             return d;
         }
+
+        public static Vector2 RandomPointFromCircle(Vector2 point, int radius)
+        {
+            float angle = Rand.Next() * 10f;
+            return new Vector2(
+                point.X + (float)Math.Cos(angle) * radius * Rand.Next(), 
+                point.Y + (float)Math.Sin(angle) * radius * Rand.Next());
+        }
     }
 }

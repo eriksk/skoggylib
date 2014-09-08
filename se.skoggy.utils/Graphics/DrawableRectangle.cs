@@ -26,6 +26,13 @@ namespace se.skoggy.utils.Graphics
             this.fillColor = fillColor;
             this.outlineColor = outlineColor;
         }
+        public DrawableRectangle(Texture2D pixel, Rectangle area, Color fillColor, Color outlineColor)
+        {
+            this.pixel = pixel;
+            rectangle = area;
+            this.fillColor = fillColor;
+            this.outlineColor = outlineColor;
+        }
 
         public int X { get { return rectangle.X; } set { rectangle.X = value; } }
         public int Y { get { return rectangle.Y; } set { rectangle.Y = value; } }

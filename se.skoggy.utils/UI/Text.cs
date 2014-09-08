@@ -14,7 +14,7 @@ namespace se.skoggy.utils.UI
         public float rotation;
 
         public SpriteEffects flip;
-        private readonly TextAlign align;
+        private TextAlign align;
         protected string text;
         private bool dirty;
 
@@ -32,6 +32,8 @@ namespace se.skoggy.utils.UI
         }
 
         public string Content { get { return text; } set { text = value; dirty = true; } }
+
+        public TextAlign Align { get { return align; } set { align = value; dirty = true; } }
 
         private void Clean(SpriteFont font)
         {
