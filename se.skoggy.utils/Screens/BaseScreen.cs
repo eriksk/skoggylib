@@ -15,7 +15,8 @@ namespace se.skoggy.utils.Screens
     public class BaseScreen : IScreen
     {
         protected string name;
-        protected int width, height;
+
+        private Resolution virtualResolution;
 
         private TimerTrig transitionTimer;
         protected IGameContext context;
@@ -26,19 +27,18 @@ namespace se.skoggy.utils.Screens
 
         protected TweenManager tweenManager;
 
-        public BaseScreen(IGameContext context, string name, int width, int height)
+        public BaseScreen(IGameContext context, string name, int virtualWidth, int virtualHeight)
         {
             this.context = context;
             this.name = name;
-            this.width = width;
-            this.height = height;
+            virtualResolution = new Resolution(virtualWidth, virtualHeight);
             transitionTimer = new TimerTrig(0);
             TransitionDuration = 1000f;
             spriteBatch = new SpriteBatch(context.GraphicsDevice);
             content = new ContentManager(context.ServiceProvider, context.ContentRoot);
             State = ScreenState.Initializing;
             tweenManager = new TweenManager();
-            cam = new Camera(new Vector2(width / 2, height / 2));
+            cam = new Camera(new Vector2(virtualWidth / 2, virtualHeight / 2));
         }
 
         protected float TransitionDuration
@@ -58,6 +58,19 @@ namespace se.skoggy.utils.Screens
                 transitionTimer.Reset();
                 StateChanged();
             }
+        }
+
+        /// <summary>
+        /// Actual screen resolution
+        /// </summary>
+        public Resolution Resolution 
+        {
+            get { return context.Resolution; }
+        }
+
+        public Resolution VirtualResolution 
+        {
+            get { return virtualResolution; }
         }
 
         protected bool TransitioningIn
@@ -85,10 +98,10 @@ namespace se.skoggy.utils.Screens
             tweenManager.Add(tween);
         }
 
-        protected Vector2 Top { get { return new Vector2(0, -height / 2); } }
-        protected Vector2 Left { get { return new Vector2(-width / 2, 0); } }
-        protected Vector2 Right { get { return new Vector2(width / 2, 0); } }
-        protected Vector2 Bottom { get { return new Vector2(0, height / 2); } }
+        protected Vector2 Top { get { return new Vector2(0, -VirtualResolution.Width / 2); } }
+        protected Vector2 Left { get { return new Vector2(-VirtualResolution.Width / 2, 0); } }
+        protected Vector2 Right { get { return new Vector2(VirtualResolution.Width / 2, 0); } }
+        protected Vector2 Bottom { get { return new Vector2(0, VirtualResolution.Height / 2); } }
         protected Vector2 Center { get { return new Vector2(0, 0); } }
 
         public virtual void StateChanged() 
