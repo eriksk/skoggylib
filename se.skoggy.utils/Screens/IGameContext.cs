@@ -9,12 +9,17 @@ namespace se.skoggy.utils.Screens
 {
     public interface IGameContext
     {
+        string ContentRoot { get; }
         GraphicsDevice GraphicsDevice { get; }
         IServiceProvider ServiceProvider { get; }
-        string ContentRoot { get; }
         Resolution Resolution{ get; }
+        DisplayModeCollection DisplayModes { get; }
+        void ChangeDisplayMode(DisplayMode displayMode);
+        bool IsFullScreen { get; }
+        void SetFullScreen(bool fullScreen);
 
         void ChangeScreen(IScreen screen);
         void Exit();
+
     }
 }

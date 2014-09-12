@@ -123,5 +123,10 @@ namespace se.skoggy.utils.Cameras
             scale = movementInterpolation.Apply(scale, targetScale, Speed);
             scale = MathHelper.Clamp(scale, MaxZoom, MinZoom);
         }
+
+        public float GetZoom()
+        {
+            return scale;
+        }
     }
 }
