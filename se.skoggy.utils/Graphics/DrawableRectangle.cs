@@ -10,8 +10,8 @@ namespace se.skoggy.utils.Graphics
     public class DrawableRectangle
     {
         protected Rectangle rectangle;
-        protected Color fillColor;
-        protected Color outlineColor;
+        public Color fillColor;
+        public Color outlineColor;
         protected Texture2D pixel;
 
         public DrawableRectangle(Texture2D pixel)

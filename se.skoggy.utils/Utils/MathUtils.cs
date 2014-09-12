@@ -50,8 +50,8 @@ namespace se.skoggy.utils.Utils
         {
             float angle = Rand.Next() * 10f;
             return new Vector2(
-                point.X + (float)Math.Cos(angle) * radius * Rand.Next(), 
-                point.Y + (float)Math.Sin(angle) * radius * Rand.Next());
+                point.X + (float)Math.Cos(angle) * radius, 
+                point.Y + (float)Math.Sin(angle) * radius);
         }
     }
 }

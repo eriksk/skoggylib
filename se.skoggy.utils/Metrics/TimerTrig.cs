@@ -17,6 +17,7 @@ namespace se.skoggy.utils.Metrics
         }
 
         public float Interval { get { return interval; } }
+        public float Progress { get { return current / interval; } }
 
         public void Reset()
         {
@@ -48,5 +49,6 @@ namespace se.skoggy.utils.Metrics
             current -= interval;
             return true;
         }
+
     }
 }
