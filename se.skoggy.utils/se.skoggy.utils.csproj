@@ -13,7 +13,7 @@
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
-    <PlatformTarget>x86</PlatformTarget>
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -53,6 +53,7 @@
     <Compile Include="Collections\Range.cs" />
     <Compile Include="GameObjects\GameObject.cs" />
     <Compile Include="GameObjects\PoolableGameObject.cs" />
+    <Compile Include="Graphics\DrawableGrid.cs" />
     <Compile Include="Graphics\DrawableLine.cs" />
     <Compile Include="Graphics\DrawableRectangle.cs" />
     <Compile Include="Interpolations\Elastic.cs" />
@@ -71,7 +72,9 @@
     <Compile Include="Logging\ILogger.cs" />
     <Compile Include="Logging\MessageType.cs" />
     <Compile Include="Management\Pool.cs" />
+    <Compile Include="MathUtils\Transform.cs" />
     <Compile Include="Metrics\TimerTrig.cs" />
+    <Compile Include="Particles\PoolableParticleManager.cs" />
     <Compile Include="Ranges\ColorRange.cs" />
     <Compile Include="Ranges\FloatRange.cs" />
     <Compile Include="Particles\ParticleEmitterSettings.cs" />
@@ -92,11 +95,14 @@
     <Compile Include="Shaders\Stock\HorizontalLinesShader.cs" />
     <Compile Include="Shaders\Stock\HorizontalLinesShaderParameters.cs" />
     <Compile Include="Sprites\SpriteSheet.cs" />
+    <Compile Include="Sprites\TextureAtlas.cs" />
+    <Compile Include="Sprites\TextureAtlasPart.cs" />
     <Compile Include="TMX\TmxMapData.cs" />
     <Compile Include="TMX\TmxMapDataLoader.cs" />
     <Compile Include="TMX\TmxMapLayer.cs" />
     <Compile Include="TMX\TmxMapObject.cs" />
     <Compile Include="TMX\TmxTileSet.cs" />
+    <Compile Include="UI\Cursor.cs" />
     <Compile Include="Utils\MathUtils.cs" />
     <Compile Include="Utils\Rand.cs" />
     <Compile Include="Resolutions\IResolutionIndependence.cs" />

@@ -15,10 +15,14 @@ namespace se.skoggy.utils.Particles
         List<ParticleEmitter> emitters;
         
         public Vector2 position;
+        public float rotation;
+        public float scale;
 
         public ParticleSystem(ParticleSystemSettings settings)
         {
             position = Vector2.Zero;
+            rotation = 0f;
+            scale = 1f;
             Initialize(settings);
         }
 
@@ -28,6 +32,35 @@ namespace se.skoggy.utils.Particles
             foreach (var emitterSettings in settings.emitters)
             {
                 emitters.Add(new ParticleEmitter(emitterSettings));
+            }
+        }
+
+        public bool Done 
+        {
+            get
+            {
+                bool allDone = true;
+                foreach (var emitter in emitters)
+                {
+                    if (emitter.settings.loop)
+                        return false;
+                    if (!emitter.Done)
+                        allDone = false;
+                }
+                return allDone && AllEmittersAreDone;
+            }
+        }
+
+        public bool AllEmittersAreDone 
+        {
+            get
+            {
+                for (int i = 0; i < emitters.Count; i++)
+                {
+                    if (!emitters[i].Done)
+                        return false;
+                }
+                return true;
             }
         }
 
@@ -75,7 +108,7 @@ namespace se.skoggy.utils.Particles
         {
             foreach (var emitter in emitters)
             {
-                emitter.Draw(cam, spriteBatch, position, sources, template);
+                emitter.Draw(cam, spriteBatch, this, sources, template);
             }
         }
 
@@ -83,9 +116,8 @@ namespace se.skoggy.utils.Particles
         {
             foreach (var emitter in emitters)
             {
-                emitter.Draw(cam, spriteBatch, position, sources, template, effect);
+                emitter.Draw(cam, spriteBatch, this, sources, template, effect);
             }
         }
-
     }
 }

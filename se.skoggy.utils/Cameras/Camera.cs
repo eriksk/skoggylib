@@ -80,6 +80,11 @@ namespace se.skoggy.utils.Cameras
             target.Y = y;
         }
 
+        public void Move(Vector2 position)
+        {
+            Move(position.X, position.Y);
+        }
+
         public void Move(float x, float y)
         {
             target.X = x;

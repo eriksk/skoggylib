@@ -31,6 +31,7 @@ namespace se.skoggy.utils.Particles
         {
             spawned = 0;
             running = false;
+            Done = false;
             particles.Clear();
         }
 
@@ -42,6 +43,7 @@ namespace se.skoggy.utils.Particles
         public void Play() 
         {
             running = true;
+            Done = false;
         }
 
         public void ResetAndRecreate()
@@ -52,6 +54,7 @@ namespace se.skoggy.utils.Particles
 
         private void Spawn()
         {
+            // TODO: parenting of particles to enable transforms for children, let them be like unity so world or local space
             for (int i = 0; i < settings.spawnCount; i++)
             {
                 if (particles.Count >= settings.capacity)
@@ -84,6 +87,8 @@ namespace se.skoggy.utils.Particles
             spawnTimer.Set(settings.frequency.Random());
         }
 
+        public bool Done { get; private set; }
+
         public void Update(float dt) 
         {
             if (!running)
@@ -99,8 +104,8 @@ namespace se.skoggy.utils.Particles
                 {
                     if (spawned >= settings.capacity)
                     {
-                        // Do nothing, this is done
-                        // TODO: done flag or dynamic property
+                        if(particles.Count == 0)
+                            Done = true;
                     }
                     else
                     {
@@ -138,42 +143,24 @@ namespace se.skoggy.utils.Particles
                 }
             }
         }
-
-        public void Draw(Camera cam, SpriteBatch spriteBatch, Vector2 position, Rectangle[] sources, GameObject template)
+        public void Draw(Camera cam, SpriteBatch spriteBatch, ParticleSystem parent, Rectangle[] sources, GameObject template)
         {
-            spriteBatch.Begin(SpriteSortMode.Immediate, settings.blendState, null, null, null, null, cam.Projection);
-            for (int i = 0; i < particles.Count; i++)
-            {
-                Particle p = particles[i];
-                template.position.X = position.X + p.position.X;
-                template.position.Y = position.Y + p.position.Y;
-                template.rotation = p.rotation;
-                Rectangle source = sources[p.source];
-                template.SetSource(source.X, source.Y, source.Width, source.Height);
-                template.scale.X = p.scale.X;
-                template.scale.Y = p.scale.Y;
-                template.color.R = p.color.R;
-                template.color.G = p.color.G;
-                template.color.B = p.color.B;
-                template.color.A = p.color.A;
-                template.Draw(spriteBatch);
-            }
-            spriteBatch.End();
+            Draw(cam, spriteBatch, parent, sources, template, null);
         }
 
-        public void Draw(Camera cam, SpriteBatch spriteBatch, Vector2 position, Rectangle[] sources, GameObject template, Effect effect)
+        public void Draw(Camera cam, SpriteBatch spriteBatch, ParticleSystem parent, Rectangle[] sources, GameObject template, Effect effect)
         {
             spriteBatch.Begin(SpriteSortMode.Immediate, settings.blendState, null, null, null, effect, cam.Projection);
             for (int i = 0; i < particles.Count; i++)
             {
                 Particle p = particles[i];
-                template.position.X = position.X + p.position.X;
-                template.position.Y = position.Y + p.position.Y;
-                template.rotation = p.rotation;
+                template.position.X = parent.position.X + (float)Math.Cos(parent.rotation) * p.position.X * parent.scale;
+                template.position.Y = parent.position.Y + (float)Math.Sin(parent.rotation) * p.position.Y * parent.scale;
+                template.rotation = parent.rotation + p.rotation;
                 Rectangle source = sources[p.source];
                 template.SetSource(source.X, source.Y, source.Width, source.Height);
-                template.scale.X = p.scale.X;
-                template.scale.Y = p.scale.Y;
+                template.scale.X = p.scale.X * parent.scale;
+                template.scale.Y = p.scale.Y * parent.scale;
                 template.color.R = p.color.R;
                 template.color.G = p.color.G;
                 template.color.B = p.color.B;
@@ -182,5 +169,6 @@ namespace se.skoggy.utils.Particles
             }
             spriteBatch.End();
         }
+
     }
 }

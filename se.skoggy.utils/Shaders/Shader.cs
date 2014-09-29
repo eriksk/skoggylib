@@ -20,7 +20,11 @@ namespace se.skoggy.utils.Shaders
         }
 
         public Effect Effect { get { return effect; } }
-        public T Parameters { get { return parameters; } }
+        public T Parameters 
+        {
+            get { return parameters; }
+            set { parameters = value; }
+        }
 
         public virtual void Load(ShaderLoader shaderLoader) 
         {

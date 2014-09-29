@@ -110,6 +110,19 @@ namespace se.skoggy.utils.GameObjects
             spriteBatch.Draw(texture, position, source, color, rotation, originInPixels, scale, flip, 0f);
         }
 
+        public GameObject Clone()
+        {
+            var clone = new GameObject(texture);
+            clone.SetPosition(position);
+            clone.SetRotation(rotation);
+            clone.SetScale(scale.X, scale.Y);
+            clone.SetFlip(flip);
+            clone.SetSource(source);
+            clone.SetOrigin(origin.X, origin.Y);
+            clone.color = color;
+            return clone;
+        }
+
         #region ITweenable
 
         void ITweenable.SetPosition(float x, float y)
@@ -161,6 +174,7 @@ namespace se.skoggy.utils.GameObjects
         }
         
         #endregion
+
 
     }
 }
