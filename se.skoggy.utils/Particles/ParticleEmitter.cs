@@ -91,10 +91,7 @@ namespace se.skoggy.utils.Particles
 
         public void Update(float dt) 
         {
-            if (!running)
-                return;
-
-            if (spawnTimer.IsTrigged(dt)) 
+            if (running && spawnTimer.IsTrigged(dt)) 
             {
                 if (settings.loop)
                 {
@@ -154,8 +151,11 @@ namespace se.skoggy.utils.Particles
             for (int i = 0; i < particles.Count; i++)
             {
                 Particle p = particles[i];
-                template.position.X = parent.position.X + (float)Math.Cos(parent.rotation) * p.position.X * parent.scale;
-                template.position.Y = parent.position.Y + (float)Math.Sin(parent.rotation) * p.position.Y * parent.scale;
+
+                Vector2 rotatedPosition = Vector2.Transform(p.position, Matrix.CreateRotationZ(parent.rotation));
+
+                template.position.X = parent.position.X + rotatedPosition.X * parent.scale;
+                template.position.Y = parent.position.Y + rotatedPosition.Y * parent.scale;
                 template.rotation = parent.rotation + p.rotation;
                 Rectangle source = sources[p.source];
                 template.SetSource(source.X, source.Y, source.Width, source.Height);

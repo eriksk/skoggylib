@@ -4,10 +4,11 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using StructureMap;
 
 namespace se.skoggy.utils.Screens
 {
-    public interface IGameContext
+    public interface IGameContext : IBootstrapper
     {
         string ContentRoot { get; }
         GraphicsDevice GraphicsDevice { get; }
@@ -17,7 +18,7 @@ namespace se.skoggy.utils.Screens
         void ChangeDisplayMode(DisplayMode displayMode);
         bool IsFullScreen { get; }
         void SetFullScreen(bool fullScreen);
-
+        
         void ChangeScreen(IScreen screen);
         void Exit();
 

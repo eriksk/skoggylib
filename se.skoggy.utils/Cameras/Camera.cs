@@ -25,11 +25,13 @@ namespace se.skoggy.utils.Cameras
             targetScale = 1f;
             movementInterpolation = Interpolation.Linear;
             Speed = 0.05f;
+            ZoomSpeed = 0.01f;
             MaxZoom = 0.1f;
             MinZoom = 2f;
         }
 
         public float Speed { get; set; }
+        public float ZoomSpeed { get; set; }
         public float MaxZoom { get; set; }
         public float MinZoom { get; set; }
         public float Scale { get { return scale; } }
@@ -119,13 +121,18 @@ namespace se.skoggy.utils.Cameras
             targetScale += zoom;
         }
 
+        public void ZoomTo(float zoom)
+        {
+            targetScale = zoom;
+        }
+
         public virtual void Update(float dt)
         {            
             position.X = movementInterpolation.Apply(position.X, target.X, Speed);
             position.Y = movementInterpolation.Apply(position.Y, target.Y, Speed);
 
             rotation = movementInterpolation.Apply(rotation, targetRotation, Speed);
-            scale = movementInterpolation.Apply(scale, targetScale, Speed);
+            scale = movementInterpolation.Apply(scale, targetScale, ZoomSpeed);
             scale = MathHelper.Clamp(scale, MaxZoom, MinZoom);
         }
 

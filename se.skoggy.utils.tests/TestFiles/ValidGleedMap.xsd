@@ -1,0 +1,215 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="Level" xmlns="" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+  <xs:element name="Position">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="X" type="xs:string" minOccurs="0" />
+        <xs:element name="Y" type="xs:string" minOccurs="0" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Vector2">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="X" type="xs:string" minOccurs="0" />
+        <xs:element name="Y" type="xs:string" minOccurs="0" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Level" msdata:IsDataSet="true" msdata:Locale="en-US">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element ref="Position" />
+        <xs:element ref="Vector2" />
+        <xs:element name="LevelProperties">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Name" type="xs:string" minOccurs="0" />
+              <xs:element name="Id" type="xs:string" minOccurs="0" />
+              <xs:element name="Visible" type="xs:string" minOccurs="0" />
+              <xs:element name="CustomProperties" type="xs:string" minOccurs="0" />
+              <xs:element name="ContentRootFolder" type="xs:string" minOccurs="0" />
+              <xs:element name="NextItemNumber" type="xs:string" minOccurs="0" />
+              <xs:element name="Version" type="xs:string" minOccurs="0" />
+              <xs:element ref="Position" minOccurs="0" maxOccurs="unbounded" />
+              <xs:element name="CameraPosition" minOccurs="0" maxOccurs="unbounded">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element name="X" type="xs:string" minOccurs="0" />
+                    <xs:element name="Y" type="xs:string" minOccurs="0" />
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="Layers">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Layer" minOccurs="0" maxOccurs="unbounded">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element name="LayerProperties" minOccurs="0" maxOccurs="unbounded">
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element name="Name" type="xs:string" minOccurs="0" />
+                          <xs:element name="Id" type="xs:string" minOccurs="0" />
+                          <xs:element name="Visible" type="xs:string" minOccurs="0" />
+                          <xs:element ref="Position" minOccurs="0" maxOccurs="unbounded" />
+                          <xs:element name="CustomProperties" minOccurs="0" maxOccurs="unbounded">
+                            <xs:complexType>
+                              <xs:sequence>
+                                <xs:element name="Property" minOccurs="0" maxOccurs="unbounded">
+                                  <xs:complexType>
+                                    <xs:sequence>
+                                      <xs:element name="boolean" type="xs:string" minOccurs="0" msdata:Ordinal="0" />
+                                      <xs:element name="Color" minOccurs="0" maxOccurs="unbounded">
+                                        <xs:complexType>
+                                          <xs:sequence>
+                                            <xs:element name="R" type="xs:string" minOccurs="0" />
+                                            <xs:element name="G" type="xs:string" minOccurs="0" />
+                                            <xs:element name="B" type="xs:string" minOccurs="0" />
+                                            <xs:element name="A" type="xs:string" minOccurs="0" />
+                                            <xs:element name="PackedValue" type="xs:string" minOccurs="0" />
+                                          </xs:sequence>
+                                        </xs:complexType>
+                                      </xs:element>
+                                    </xs:sequence>
+                                    <xs:attribute name="Name" type="xs:string" />
+                                    <xs:attribute name="Type" type="xs:string" />
+                                    <xs:attribute name="Description" type="xs:string" />
+                                  </xs:complexType>
+                                </xs:element>
+                              </xs:sequence>
+                            </xs:complexType>
+                          </xs:element>
+                          <xs:element name="ScrollSpeed" minOccurs="0" maxOccurs="unbounded">
+                            <xs:complexType>
+                              <xs:sequence>
+                                <xs:element name="X" type="xs:string" minOccurs="0" />
+                                <xs:element name="Y" type="xs:string" minOccurs="0" />
+                              </xs:sequence>
+                            </xs:complexType>
+                          </xs:element>
+                        </xs:sequence>
+                      </xs:complexType>
+                    </xs:element>
+                    <xs:element name="Editors" minOccurs="0" maxOccurs="unbounded">
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element name="Editor" minOccurs="0" maxOccurs="unbounded">
+                            <xs:complexType>
+                              <xs:sequence>
+                                <xs:element name="PathItemProperties" minOccurs="0" maxOccurs="unbounded">
+                                  <xs:complexType>
+                                    <xs:sequence>
+                                      <xs:element name="Name" type="xs:string" minOccurs="0" />
+                                      <xs:element name="Id" type="xs:string" minOccurs="0" />
+                                      <xs:element name="Visible" type="xs:string" minOccurs="0" />
+                                      <xs:element name="CustomProperties" type="xs:string" minOccurs="0" />
+                                      <xs:element name="IsPolygon" type="xs:string" minOccurs="0" />
+                                      <xs:element name="LineWidth" type="xs:string" minOccurs="0" />
+                                      <xs:element ref="Position" minOccurs="0" maxOccurs="unbounded" />
+                                      <xs:element name="LineColor" minOccurs="0" maxOccurs="unbounded">
+                                        <xs:complexType>
+                                          <xs:sequence>
+                                            <xs:element name="R" type="xs:string" minOccurs="0" />
+                                            <xs:element name="G" type="xs:string" minOccurs="0" />
+                                            <xs:element name="B" type="xs:string" minOccurs="0" />
+                                            <xs:element name="A" type="xs:string" minOccurs="0" />
+                                            <xs:element name="PackedValue" type="xs:string" minOccurs="0" />
+                                          </xs:sequence>
+                                        </xs:complexType>
+                                      </xs:element>
+                                      <xs:element name="LocalPoints" minOccurs="0" maxOccurs="unbounded">
+                                        <xs:complexType>
+                                          <xs:sequence>
+                                            <xs:element ref="Vector2" minOccurs="0" maxOccurs="unbounded" />
+                                          </xs:sequence>
+                                        </xs:complexType>
+                                      </xs:element>
+                                      <xs:element name="WorldPoints" minOccurs="0" maxOccurs="unbounded">
+                                        <xs:complexType>
+                                          <xs:sequence>
+                                            <xs:element ref="Vector2" minOccurs="0" maxOccurs="unbounded" />
+                                          </xs:sequence>
+                                        </xs:complexType>
+                                      </xs:element>
+                                    </xs:sequence>
+                                  </xs:complexType>
+                                </xs:element>
+                                <xs:element name="TextureItemProperties" minOccurs="0" maxOccurs="unbounded">
+                                  <xs:complexType>
+                                    <xs:sequence>
+                                      <xs:element name="Name" type="xs:string" minOccurs="0" />
+                                      <xs:element name="Id" type="xs:string" minOccurs="0" />
+                                      <xs:element name="Visible" type="xs:string" minOccurs="0" />
+                                      <xs:element name="CustomProperties" type="xs:string" minOccurs="0" />
+                                      <xs:element name="Rotation" type="xs:string" minOccurs="0" />
+                                      <xs:element name="FlipHorizontally" type="xs:string" minOccurs="0" />
+                                      <xs:element name="FlipVertically" type="xs:string" minOccurs="0" />
+                                      <xs:element name="IsTemplate" type="xs:string" minOccurs="0" />
+                                      <xs:element name="TexturePathRelativeToContentRoot" type="xs:string" minOccurs="0" />
+                                      <xs:element ref="Position" minOccurs="0" maxOccurs="unbounded" />
+                                      <xs:element name="Scale" minOccurs="0" maxOccurs="unbounded">
+                                        <xs:complexType>
+                                          <xs:sequence>
+                                            <xs:element name="X" type="xs:string" minOccurs="0" />
+                                            <xs:element name="Y" type="xs:string" minOccurs="0" />
+                                          </xs:sequence>
+                                        </xs:complexType>
+                                      </xs:element>
+                                      <xs:element name="TintColor" minOccurs="0" maxOccurs="unbounded">
+                                        <xs:complexType>
+                                          <xs:sequence>
+                                            <xs:element name="R" type="xs:string" minOccurs="0" />
+                                            <xs:element name="G" type="xs:string" minOccurs="0" />
+                                            <xs:element name="B" type="xs:string" minOccurs="0" />
+                                            <xs:element name="A" type="xs:string" minOccurs="0" />
+                                            <xs:element name="PackedValue" type="xs:string" minOccurs="0" />
+                                          </xs:sequence>
+                                        </xs:complexType>
+                                      </xs:element>
+                                      <xs:element name="Origin" minOccurs="0" maxOccurs="unbounded">
+                                        <xs:complexType>
+                                          <xs:sequence>
+                                            <xs:element name="X" type="xs:string" minOccurs="0" />
+                                            <xs:element name="Y" type="xs:string" minOccurs="0" />
+                                          </xs:sequence>
+                                        </xs:complexType>
+                                      </xs:element>
+                                    </xs:sequence>
+                                  </xs:complexType>
+                                </xs:element>
+                              </xs:sequence>
+                              <xs:attribute name="ClrTypeOfEditor" type="xs:string" />
+                              <xs:attribute name="ClrTypeOfProperties" type="xs:string" />
+                              <xs:attribute name="Name" type="xs:string" />
+                            </xs:complexType>
+                          </xs:element>
+                        </xs:sequence>
+                      </xs:complexType>
+                    </xs:element>
+                  </xs:sequence>
+                  <xs:attribute name="Name" type="xs:string" />
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="TypeMap">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Type" minOccurs="0" maxOccurs="unbounded">
+                <xs:complexType>
+                  <xs:attribute name="Name" type="xs:string" />
+                  <xs:attribute name="Index" type="xs:string" />
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>
