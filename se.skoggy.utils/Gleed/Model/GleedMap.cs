@@ -40,6 +40,8 @@ namespace se.skoggy.utils.Gleed.Model
         public Color color;
         public bool visible;
         public string assetName;
+        public Vector2[] nodes;
+        public string type;
     }
 
     public class LayerProperties
