@@ -147,7 +147,7 @@ namespace se.skoggy.utils.Particles
 
         public void Draw(Camera cam, SpriteBatch spriteBatch, ParticleSystem parent, Rectangle[] sources, GameObject template, Effect effect)
         {
-            spriteBatch.Begin(SpriteSortMode.Immediate, settings.blendState, null, null, null, effect, cam.Projection);
+            spriteBatch.Begin(SpriteSortMode.Immediate, settings.blendState, null, null, null, effect, cam.View);
             for (int i = 0; i < particles.Count; i++)
             {
                 Particle p = particles[i];

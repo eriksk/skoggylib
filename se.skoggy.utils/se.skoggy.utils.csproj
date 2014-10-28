@@ -44,6 +44,10 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Animations\FrameStepAnimation.cs" />
+    <Compile Include="Animations\KeyFrameAnimations\KeyFrameAnimation.cs" />
+    <Compile Include="Animations\KeyFrameAnimations\KeyFrameAnimationCollection.cs" />
+    <Compile Include="Animations\KeyFrameAnimations\KeyFrameAnimationCollectionIO.cs" />
+    <Compile Include="Animations\KeyFrameAnimations\KeyFrameAnimationCollectionLoader.cs" />
     <Compile Include="Animations\TreeAnimations\Animation.cs" />
     <Compile Include="Animations\TreeAnimations\AnimationCollection.cs" />
     <Compile Include="Animations\TreeAnimations\AnimationEvent.cs" />
@@ -56,14 +60,6 @@
     <Compile Include="Bootstrap\IGameBootstrapper.cs" />
     <Compile Include="Cameras\Camera.cs" />
     <Compile Include="Collections\Range.cs" />
-    <Compile Include="ECSL\Implementations\Components\GameObjectComponent.cs" />
-    <Compile Include="ECSL\Implementations\Components\SpriteRenderer.cs" />
-    <Compile Include="ECSL\Implementations\Entities\GameObject.cs" />
-    <Compile Include="ECSL\Rendering\Implementations\Monogame\MonoGameRenderContext.cs" />
-    <Compile Include="ECSL\Rendering\Implementations\Monogame\MonoGameTexture.cs" />
-    <Compile Include="ECSL\Rendering\IRenderer.cs" />
-    <Compile Include="ECSL\Rendering\ITexture.cs" />
-    <Compile Include="ECSL\Rendering\RenderContext.cs" />
     <Compile Include="GameObjects\GameObject.cs" />
     <Compile Include="GameObjects\PoolableGameObject.cs" />
     <Compile Include="Gleed\GleedMapLoader.cs" />
@@ -87,6 +83,7 @@
     <Compile Include="Logging\ILogger.cs" />
     <Compile Include="Logging\MessageType.cs" />
     <Compile Include="Management\Pool.cs" />
+    <Compile Include="MathUtils\Rectanglef.cs" />
     <Compile Include="MathUtils\Transform.cs" />
     <Compile Include="Metrics\TimerTrig.cs" />
     <Compile Include="Particles\PoolableParticleManager.cs" />
@@ -144,24 +141,14 @@
     <Compile Include="UI\TextAlign.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Reference Include="MonoGame.Framework, Version=3.1.2.0, Culture=neutral, processorArchitecture=MSIL" />
     <Reference Include="Newtonsoft.Json">
       <HintPath>..\..\..\choppertest\ChopperTest\packages\Newtonsoft.Json.6.0.4\lib\net40\Newtonsoft.Json.dll</HintPath>
-    </Reference>
-    <Reference Include="OpenTK">
-      <HintPath>$(MSBuildExtensionsPath)\..\MonoGame\v3.0\Assemblies\WindowsGL\OpenTK.dll</HintPath>
-    </Reference>
-    <Reference Include="MonoGame.Framework">
-      <HintPath>$(MSBuildExtensionsPath)\..\MonoGame\v3.0\Assemblies\WindowsGL\MonoGame.Framework.dll</HintPath>
     </Reference>
     <Reference Include="Lidgren.Network">
       <HintPath>$(MSBuildExtensionsPath)\..\MonoGame\v3.0\Assemblies\WindowsGL\Lidgren.Network.dll</HintPath>
     </Reference>
-    <Reference Include="StructureMap">
-      <HintPath>..\..\..\SnowInAli\SnowInAli\packages\structuremap.3.1.4.143\lib\net40\StructureMap.dll</HintPath>
-    </Reference>
-    <Reference Include="StructureMap.Net4">
-      <HintPath>..\..\..\SnowInAli\SnowInAli\packages\structuremap.3.1.4.143\lib\net40\StructureMap.Net4.dll</HintPath>
-    </Reference>
+    <Reference Include="OpenTK, Version=1.1.0.0, Culture=neutral, PublicKeyToken=bad199fe84eb3df4, processorArchitecture=MSIL" />
     <Reference Include="Tao.Sdl">
       <HintPath>$(MSBuildExtensionsPath)\..\MonoGame\v3.0\Assemblies\WindowsGL\Tao.Sdl.dll</HintPath>
     </Reference>
@@ -171,15 +158,7 @@
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\..\se.skoggy.ecsl\se.skoggy.ecsl\se.skoggy.ecsl.csproj">
-      <Project>{348ec9b0-ba79-4127-a7bd-b4fea3de92a5}</Project>
-      <Name>se.skoggy.ecsl</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="ECSL\Interfaces\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

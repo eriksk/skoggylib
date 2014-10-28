@@ -14,5 +14,10 @@ namespace se.skoggy.utils.TMX
         public TmxMapLayer[] layers;
         public TmxTileSet[] tilesets;
         public Dictionary<string, string> properties;
+
+        public TmxMapData()
+        {
+            properties = new Dictionary<string, string>();
+        }
     }
 }

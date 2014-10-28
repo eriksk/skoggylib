@@ -14,6 +14,8 @@ namespace se.skoggy.utils.Cameras
         protected Interpolation movementInterpolation;
         protected float rotation, targetRotation;
         protected float scale, targetScale;
+        private Rectangle _boundary;
+        private bool _useBoundary;
 
         public Camera(Vector2 center)
         {
@@ -28,6 +30,14 @@ namespace se.skoggy.utils.Cameras
             ZoomSpeed = 0.01f;
             MaxZoom = 0.1f;
             MinZoom = 2f;
+            _boundary = new Rectangle();
+            _useBoundary = false;
+        }
+
+        public void SetBoundary(Rectangle area)
+        {
+            _boundary = area;
+            _useBoundary = true;
         }
 
         public float Speed { get; set; }
@@ -42,20 +52,38 @@ namespace se.skoggy.utils.Cameras
             center.Y = Height / 2;
         }
 
-        public virtual Matrix Projection 
+        public Matrix GetParallaxView(Vector2 parallax)
         {
-            get 
+            return Matrix.CreateRotationZ(rotation) *
+                   Matrix.CreateTranslation(new Vector3(position.X * parallax.X, position.Y * parallax.Y, 0f)) *
+                   Matrix.CreateScale(scale) *
+                   Matrix.CreateTranslation(center.X, center.Y, 0f);
+        }
+
+        public virtual Matrix View
+        {
+            get
             {
-                return Matrix.CreateRotationZ(rotation) * 
+                return Matrix.CreateRotationZ(rotation) *
                        Matrix.CreateTranslation(position.X, position.Y, 0f) *
                        Matrix.CreateScale(scale) *
+                       Matrix.CreateTranslation(center.X, center.Y, 0f);
+            }
+        }
+        
+        public virtual Matrix ViewNoScale
+        {
+            get
+            {
+                return Matrix.CreateRotationZ(rotation) *
+                       Matrix.CreateTranslation(position.X, position.Y, 0f) *
                        Matrix.CreateTranslation(center.X, center.Y, 0f);
             }
         }
 
         public Vector2 ScreenToWorld(Vector2 screen)
         {
-            return Vector2.Transform(screen, Matrix.Invert(Projection));
+            return Vector2.Transform(screen, Matrix.Invert(View));
         }
 
         public Vector2 WorldToScreen(Vector2 screen) 
@@ -65,21 +93,21 @@ namespace se.skoggy.utils.Cameras
 
         public void SetPosition(float x, float y) 
         {
-            position.X = x;
-            position.Y = y;
-            Move(x, y);
+            position.X = -x;
+            position.Y = -y;
+            Move(-x, -y);
         }
 
         public void SetX(float x)
         {
-            position.X = x;
-            target.X = x;
+            position.X = -x;
+            target.X = -x;
         }
 
         public void SetY(float y)
         {
-            position.Y = y;
-            target.Y = y;
+            position.Y = -y;
+            target.Y = -y;
         }
 
         public void Move(Vector2 position)
@@ -89,14 +117,14 @@ namespace se.skoggy.utils.Cameras
 
         public void Move(float x, float y)
         {
-            target.X = x;
-            target.Y = y;
+            target.X = -x;
+            target.Y = -y;
         }
 
         public void MoveBy(float x, float y)
         {
-            target.X += x;
-            target.Y += y;
+            target.X += -x;
+            target.Y += -y;
         }
 
         public void SetRotation(float rotation) 
@@ -134,6 +162,18 @@ namespace se.skoggy.utils.Cameras
             rotation = movementInterpolation.Apply(rotation, targetRotation, Speed);
             scale = movementInterpolation.Apply(scale, targetScale, ZoomSpeed);
             scale = MathHelper.Clamp(scale, MaxZoom, MinZoom);
+
+            if (_useBoundary)
+            {
+                if (-position.X + center.X > _boundary.Right)
+                    position.X = -_boundary.Right + center.X;
+                if (-position.X - center.X < _boundary.Left)
+                    position.X = -_boundary.Left - center.X;
+                if (-position.Y + center.Y > _boundary.Bottom)
+                    position.Y = -_boundary.Bottom + center.Y;
+                if (-position.Y - center.Y < _boundary.Top)
+                    position.Y = -_boundary.Top - center.Y;
+            }
         }
 
         public float GetZoom()

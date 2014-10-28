@@ -14,6 +14,12 @@ namespace se.skoggy.utils.TMX
         public string name;
         public int spacing;
         public int tilewidth, tileheight;
+        public Dictionary<string, Tile> tiles;
         public Dictionary<string, string> properties;
+    }
+
+    public class Tile
+    {
+        public string image;
     }
 }

@@ -39,6 +39,9 @@ namespace se.skoggy.utils.Sprites
 
         public DynamicTexture GetTexture(string name)
         {
+            if (!_textures.ContainsKey(name))
+                return null;
+
             return _textures[name];
         }
     }

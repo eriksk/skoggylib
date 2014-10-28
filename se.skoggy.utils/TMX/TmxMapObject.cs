@@ -7,8 +7,9 @@ namespace se.skoggy.utils.TMX
 {
     public class TmxMapObject
     {
+        public int gid;
         public string name;
-        public int x, y, width, height;
+        public float x, y, width, height;
         public float rotation;
         public string type;
         public bool visible;

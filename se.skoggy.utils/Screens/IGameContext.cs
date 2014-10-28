@@ -1,14 +1,14 @@
 ﻿using Microsoft.Xna.Framework.Graphics;
+using se.skoggy.utils.Bootstrap;
 using se.skoggy.utils.Resolutions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using StructureMap;
 
 namespace se.skoggy.utils.Screens
 {
-    public interface IGameContext : IBootstrapper
+    public interface IGameContext : IGameBootstrapper
     {
         string ContentRoot { get; }
         GraphicsDevice GraphicsDevice { get; }

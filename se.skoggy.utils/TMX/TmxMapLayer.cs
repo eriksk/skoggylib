@@ -16,5 +16,11 @@ namespace se.skoggy.utils.TMX
         public int x, y;
         public string draworder;
         public TmxMapObject[] objects;
+        public Dictionary<string, string> properties;
+
+        public TmxMapLayer()
+        {
+            properties = new Dictionary<string, string>();
+        }
     }
 }

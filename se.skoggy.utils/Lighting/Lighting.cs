@@ -79,7 +79,7 @@ namespace se.skoggy.utils.Lighting
         {
             graphicsDevice.SetRenderTarget(lightMap);
             graphicsDevice.Clear(Color.Black);
-            spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.Additive, null, null, null, null, cam.Projection);
+            spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.Additive, null, null, null, null, cam.View);
             foreach (var l in lights)
             {
                 l.Draw(spriteBatch);
