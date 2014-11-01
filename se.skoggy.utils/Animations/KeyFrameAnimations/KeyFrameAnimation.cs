@@ -13,7 +13,6 @@ namespace se.skoggy.utils.Animations.KeyFrameAnimations
     public class KeyFrameAnimation
     {
         private List<KeyFrame> _keyFrames;
-        private List<FrameEvent> _events;
 
         public delegate void AnimationEnded();
 
@@ -28,7 +27,7 @@ namespace se.skoggy.utils.Animations.KeyFrameAnimations
         public KeyFrameAnimation()
         {
             _keyFrames = new List<KeyFrame>();
-            _events = new List<FrameEvent>();
+            
         }
 
         public void Reset()
@@ -48,12 +47,6 @@ namespace se.skoggy.utils.Animations.KeyFrameAnimations
             set { _keyFrames = value; }
         }
 
-        public List<FrameEvent> Events
-        {
-            get { return _events; }
-            set { _events = value; }
-        }
-
         [JsonIgnore]
         public KeyFrame CurrentFrame
         {
@@ -67,12 +60,12 @@ namespace se.skoggy.utils.Animations.KeyFrameAnimations
             if (_keyFrames.Count == 0)
                 return;
 
-            CheckForEvents();
-
             float durationPerFrame = Duration / _keyFrames.Count;
 
             if (Current >= durationPerFrame)
             {
+                TrigEvents();
+
                 Current = 0f;
                 _currentFrame++;
                 if (_currentFrame > _keyFrames.Count - 1)
@@ -85,17 +78,15 @@ namespace se.skoggy.utils.Animations.KeyFrameAnimations
             }
         }
 
-        private void CheckForEvents()
+        private void TrigEvents()
         {
-            foreach (var @event in _events)
+            foreach (var @event in CurrentFrame.Events)
             {
-                if (@event.Frame == _currentFrame)
-                {
-                    if (OnFrameEvent != null)
-                        OnFrameEvent(@event);
-                }
+                if (OnFrameEvent != null)
+                    OnFrameEvent(@event);
             }
         }
+
 
         public override string ToString()
         {
@@ -122,7 +113,6 @@ namespace se.skoggy.utils.Animations.KeyFrameAnimations
     public class FrameEvent
     {
         public string Name { get; set; }
-        public int Frame { get; set; }
         public string StringValue { get; set; }
         public int IntValue { get; set; }
         public float FloatValue { get; set; }
@@ -137,6 +127,18 @@ namespace se.skoggy.utils.Animations.KeyFrameAnimations
     {
         public string Name { get; set; }
         public int FrameId { get; set; }
+        private List<FrameEvent> _events;
+
+        public KeyFrame()
+        {
+            _events = new List<FrameEvent>();
+        }
+
+        public List<FrameEvent> Events
+        {
+            get { return _events; }
+            set { _events = value; }
+        }
 
         public override string ToString()
         {
