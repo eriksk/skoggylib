@@ -6,6 +6,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Newtonsoft.Json;
 using se.skoggy.utils.Graphics;
+using se.skoggy.utils.MathUtils;
 using se.skoggy.utils.Sprites;
 
 namespace se.skoggy.utils.Animations.KeyFrameAnimations
@@ -13,27 +14,29 @@ namespace se.skoggy.utils.Animations.KeyFrameAnimations
     public class KeyFrameAnimation
     {
         private List<KeyFrame> _keyFrames;
-
         public delegate void AnimationEnded();
-
         public event AnimationEnded OnAnimationEnd;
-
         public delegate void FrameEventTriggered(FrameEvent @event);
-
         public event FrameEventTriggered OnFrameEvent;
-
         private int _currentFrame;
 
         public KeyFrameAnimation()
         {
             _keyFrames = new List<KeyFrame>();
-            
+            Transform = new Transform();
         }
 
         public void Reset()
         {
             Current = 0f;
             _currentFrame = 0;
+        }
+
+        public Transform Transform { get; set; }
+
+        private Matrix CreateRenderMatrix()
+        {
+            return Transform.Matrix;
         }
 
         public string Name { get; set; }
@@ -90,6 +93,16 @@ namespace se.skoggy.utils.Animations.KeyFrameAnimations
         public override string ToString()
         {
             return Name ?? "";
+        }
+
+        public void Draw(SpriteBatch spriteBatch, Matrix view, DynamicTextureAtlasManager atlas, List<Frame> frames, Color color, bool flipped)
+        {
+            if (_keyFrames.Count > 0 && CurrentFrame != null)
+            {
+                spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.NonPremultiplied, null, null, null, null, CreateRenderMatrix() * view);
+                CurrentFrame.Draw(spriteBatch, atlas, frames, color, flipped);
+                spriteBatch.End();
+            }
         }
 
         public void Draw(SpriteBatch spriteBatch, DynamicTextureAtlasManager atlas, List<Frame> frames, Vector2 position, Vector2 scale, Color color, bool flipped)

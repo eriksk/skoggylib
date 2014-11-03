@@ -41,6 +41,15 @@ namespace se.skoggy.utils.Animations.KeyFrameAnimations
             return null;
         }
 
+
+        public void Draw(SpriteBatch spriteBatch, DynamicTextureAtlasManager atlas, List<Frame> frames,  Color color, bool flipped = false)
+        {
+            var frame = GetFrame(frames);
+            if (frame == null)
+                return;
+            frame.Draw(spriteBatch, atlas, color, flipped);
+        }
+
         public void Draw(SpriteBatch spriteBatch, DynamicTextureAtlasManager atlas, List<Frame> frames, Vector2 position, Vector2 scale, Color color, bool flipped = false)
         {
             var frame = GetFrame(frames);

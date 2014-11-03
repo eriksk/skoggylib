@@ -47,6 +47,14 @@ namespace se.skoggy.utils.Animations.KeyFrameAnimations
             return centroid;
         }
 
+        public void Draw(SpriteBatch spriteBatch, DynamicTextureAtlasManager atlas, Color color, bool flipped = false)
+        {
+            foreach (var part in Parts)
+            {
+                part.Draw(spriteBatch, atlas, color, flipped);
+            }
+        }
+
         public void Draw(SpriteBatch spriteBatch, DynamicTextureAtlasManager atlas, Vector2 position, Vector2 scale, Color color, bool flipped = false)
         {
             foreach (var part in Parts)
