@@ -26,6 +26,7 @@ namespace se.skoggy.utils.Animations.KeyFrameAnimations
             _keyFrames = new List<KeyFrame>();
             Transform = new Transform();
             AnimationInterpolationType = AnimationInterpolationType.Linear;
+            Loop = true;
         }
 
         public void Reset()
@@ -62,6 +63,7 @@ namespace se.skoggy.utils.Animations.KeyFrameAnimations
             get { return _keyFrames; }
             set { _keyFrames = value; }
         }
+        public bool Loop { get; set; }
 
         [JsonIgnore]
         public KeyFrame CurrentFrame
@@ -71,7 +73,7 @@ namespace se.skoggy.utils.Animations.KeyFrameAnimations
         [JsonIgnore]
         public KeyFrame NextFrame
         {
-            get { return _keyFrames.Count == 0 ? null : (_currentFrame + 1 > _keyFrames.Count - 1 ? _keyFrames[0] : _keyFrames[_currentFrame + 1]); }
+            get { return _keyFrames.Count == 0 ? null : (_currentFrame + 1 > _keyFrames.Count - 1 ? (Loop ? _keyFrames[0] : CurrentFrame) : _keyFrames[_currentFrame + 1]); }
         }
 
         public void Update(float dt)
@@ -158,5 +160,6 @@ namespace se.skoggy.utils.Animations.KeyFrameAnimations
                 CurrentFrame.DrawDebugPoints(frames, spriteBatch, atlas, point, position, scale);
             }
         }
+
     }
 }

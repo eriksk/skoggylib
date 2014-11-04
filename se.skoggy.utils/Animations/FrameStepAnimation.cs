@@ -48,5 +48,10 @@ namespace se.skoggy.utils.Animations
                     OnAnimationEnd();
             }
         }
+
+        /// <summary>
+        /// Ignored needed property
+        /// </summary>
+        public bool Loop { get; set; }
     }
 }
