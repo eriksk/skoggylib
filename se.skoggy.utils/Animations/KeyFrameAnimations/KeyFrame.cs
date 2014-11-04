@@ -29,7 +29,7 @@ namespace se.skoggy.utils.Animations.KeyFrameAnimations
 
         public override string ToString()
         {
-            return Name;
+            return Name + (Events.Count > 0 ? string.Format(" ({0})", Events.Count) : "");
         }
 
         private Frame GetFrame(List<Frame> frames)
