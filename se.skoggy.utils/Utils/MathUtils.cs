@@ -11,6 +11,11 @@ namespace se.skoggy.utils.Utils
     {
         public static float AngleLerp(float nowrap, float wraps, float lerp)
         {
+            return AngleLerp(Interpolation.Linear, nowrap, wraps, lerp);
+        }
+
+        public static float AngleLerp(Interpolation interpolation, float nowrap, float wraps, float lerp)
+        {
             float c, d;
 
             if (wraps < nowrap)
@@ -18,8 +23,8 @@ namespace se.skoggy.utils.Utils
                 c = wraps + (float)(Math.PI * 2);
                 //c > nowrap > wraps
                 d = c - nowrap > nowrap - wraps
-                    ? Interpolation.Linear.Apply(nowrap, wraps, lerp)
-                    : Interpolation.Linear.Apply(nowrap, c, lerp);
+                    ? interpolation.Apply(nowrap, wraps, lerp)
+                    : interpolation.Apply(nowrap, c, lerp);
 
             }
             else if (wraps > nowrap)
@@ -27,8 +32,8 @@ namespace se.skoggy.utils.Utils
                 c = wraps - (float)(Math.PI * 2);
                 //wraps > nowrap > c
                 d = wraps - nowrap > nowrap - c
-                    ? Interpolation.Linear.Apply(nowrap, c, lerp)
-                    : Interpolation.Linear.Apply(nowrap, wraps, lerp);
+                    ? interpolation.Apply(nowrap, c, lerp)
+                    : interpolation.Apply(nowrap, wraps, lerp);
 
             }
             else { return nowrap; } //Same angle already

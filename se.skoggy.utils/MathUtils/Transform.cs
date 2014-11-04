@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
+using Newtonsoft.Json;
 
 namespace se.skoggy.utils.MathUtils
 {
@@ -19,6 +16,7 @@ namespace se.skoggy.utils.MathUtils
             Rotation = 0;
         }
 
+        [JsonIgnore]
         public Matrix Matrix
         {
             get
@@ -27,6 +25,16 @@ namespace se.skoggy.utils.MathUtils
                        Matrix.CreateRotationZ(Rotation) *
                        Matrix.CreateTranslation(Position.X, Position.Y, 0f);
             }
+        }
+
+        public Transform Clone()
+        {
+            return new Transform()
+            {
+                Position = Position,
+                Scale = Scale,
+                Rotation = Rotation
+            };
         }
     }
 }

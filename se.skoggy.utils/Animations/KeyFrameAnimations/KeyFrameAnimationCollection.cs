@@ -28,7 +28,7 @@ namespace se.skoggy.utils.Animations.KeyFrameAnimations
 
         public int GetNewUniqueFrameId()
         {
-            return _frames.Max(x => x.ID) + 1;
+            return _frames.Count == 0 ? 0 : _frames.Max(x => x.ID) + 1;
         }
     }
 }

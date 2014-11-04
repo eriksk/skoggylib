@@ -5,6 +5,7 @@ using System.Text;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using se.skoggy.utils.Graphics;
+using se.skoggy.utils.Interpolations;
 using se.skoggy.utils.Sprites;
 
 namespace se.skoggy.utils.Animations.KeyFrameAnimations
@@ -52,6 +53,25 @@ namespace se.skoggy.utils.Animations.KeyFrameAnimations
             foreach (var part in Parts)
             {
                 part.Draw(spriteBatch, atlas, color, flipped);
+            }
+        }
+
+        public void DrawInterpolated(Interpolation interpolation, float progress, Frame next, SpriteBatch spriteBatch, DynamicTextureAtlasManager atlas, Frame frame, Color color, bool flipped)
+        {
+            for (int i = 0; i < Parts.Count; i++)
+            {
+                var part = Parts[i];
+                var targetPart = next.Parts[i];
+
+                part.DrawAt(
+                    new Vector2(
+                        interpolation.Apply(part.Position.X, targetPart.Position.X, progress),
+                        interpolation.Apply(part.Position.Y, targetPart.Position.Y, progress)), 
+                        Utils.MathUtils.AngleLerp(interpolation, part.Rotation, targetPart.Rotation, progress), 
+                        spriteBatch,
+                        atlas, 
+                        color, 
+                        flipped);
             }
         }
 

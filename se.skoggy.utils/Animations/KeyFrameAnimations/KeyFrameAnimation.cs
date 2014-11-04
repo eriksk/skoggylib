@@ -6,6 +6,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Newtonsoft.Json;
 using se.skoggy.utils.Graphics;
+using se.skoggy.utils.Interpolations;
 using se.skoggy.utils.MathUtils;
 using se.skoggy.utils.Sprites;
 
@@ -24,6 +25,7 @@ namespace se.skoggy.utils.Animations.KeyFrameAnimations
         {
             _keyFrames = new List<KeyFrame>();
             Transform = new Transform();
+            AnimationInterpolationType = AnimationInterpolationType.Linear;
         }
 
         public void Reset()
@@ -43,6 +45,17 @@ namespace se.skoggy.utils.Animations.KeyFrameAnimations
         public float Duration { get; set; }
         [JsonIgnore]
         public float Current { get; set; }
+        [JsonIgnore]
+        public float FrameProgress
+        {
+            get
+            {
+                float durationPerFrame = Duration / _keyFrames.Count;
+                return Current / durationPerFrame;
+            }
+        }
+
+        public AnimationInterpolationType AnimationInterpolationType { get; set; }
 
         public List<KeyFrame> KeyFrames
         {
@@ -54,6 +67,11 @@ namespace se.skoggy.utils.Animations.KeyFrameAnimations
         public KeyFrame CurrentFrame
         {
             get { return _currentFrame > _keyFrames.Count - 1 ? null : _keyFrames[_currentFrame]; }
+        }
+        [JsonIgnore]
+        public KeyFrame NextFrame
+        {
+            get { return _keyFrames.Count == 0 ? null : (_currentFrame + 1 > _keyFrames.Count - 1 ? _keyFrames[0] : _keyFrames[_currentFrame + 1]); }
         }
 
         public void Update(float dt)
@@ -101,6 +119,26 @@ namespace se.skoggy.utils.Animations.KeyFrameAnimations
             {
                 spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.NonPremultiplied, null, null, null, null, CreateRenderMatrix() * view);
                 CurrentFrame.Draw(spriteBatch, atlas, frames, color, flipped);
+                spriteBatch.End();
+            }
+        }
+
+        public void DrawInterpolated(SpriteBatch spriteBatch, Matrix view, DynamicTextureAtlasManager atlas, List<Frame> frames, Color color, bool flipped)
+        {
+            if (_keyFrames.Count > 0 && CurrentFrame != null)
+            {
+                Interpolation interpolation = Interpolation.Linear;
+                switch (AnimationInterpolationType)
+                {
+                    case AnimationInterpolationType.Linear:
+                        break;
+                    case AnimationInterpolationType.Smooth:
+                        interpolation = Interpolation.Pow2;
+                        break;
+                }
+
+                spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.NonPremultiplied, null, null, null, null, CreateRenderMatrix() * view);
+                CurrentFrame.DrawInterpolated(interpolation, FrameProgress, NextFrame, spriteBatch, atlas, frames, color, flipped);
                 spriteBatch.End();
             }
         }

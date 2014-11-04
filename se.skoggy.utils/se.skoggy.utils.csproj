@@ -44,6 +44,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Animations\FrameStepAnimation.cs" />
+    <Compile Include="Animations\KeyFrameAnimations\AnimationInterpolationType.cs" />
     <Compile Include="Animations\KeyFrameAnimations\Frame.cs" />
     <Compile Include="Animations\KeyFrameAnimations\FrameEvent.cs" />
     <Compile Include="Animations\KeyFrameAnimations\FramePart.cs" />

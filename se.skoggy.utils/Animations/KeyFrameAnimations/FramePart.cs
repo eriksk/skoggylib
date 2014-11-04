@@ -90,6 +90,37 @@ namespace se.skoggy.utils.Animations.KeyFrameAnimations
                 0f);
         }
 
+        public void DrawAt(Vector2 overriddenPosition, float overriddenRotation, SpriteBatch spriteBatch, DynamicTextureAtlasManager atlas, Color color, bool flipped)
+        {
+            var dynamicTexture = atlas.GetTexture(TextureName);
+            if (dynamicTexture == null)
+                return;
+
+            var source = dynamicTexture.Source;
+            Vector2 position = overriddenPosition;
+            float rotation = overriddenRotation;
+
+            if (flipped)
+            {
+                rotation *= -1f;
+                position.X *= -1f;
+            }
+
+            var originInPixels = new Vector2 { X = source.Width * Origin.X, Y = source.Height * Origin.Y };
+
+            var flip = Flipped ? (!flipped) : (flipped);
+
+            spriteBatch.Draw(
+                dynamicTexture.Texture,
+                position,
+                source,
+                color,
+                rotation,
+                originInPixels,
+                Scale,
+                flip ? SpriteEffects.FlipHorizontally : SpriteEffects.None,
+                0f);
+        }
 
         public void Draw(SpriteBatch spriteBatch, DynamicTextureAtlasManager atlas, Vector2 position, Vector2 scale, Color color, bool flipped = false)
         {
