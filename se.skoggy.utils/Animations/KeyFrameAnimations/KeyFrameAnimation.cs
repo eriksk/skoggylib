@@ -139,7 +139,7 @@ namespace se.skoggy.utils.Animations.KeyFrameAnimations
                         break;
                 }
 
-                spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.NonPremultiplied, null, null, null, null, CreateRenderMatrix() * view);
+                spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.AlphaBlend, SamplerState.AnisotropicClamp, null, null, null, CreateRenderMatrix() * view);
                 CurrentFrame.DrawInterpolated(interpolation, FrameProgress, NextFrame, spriteBatch, atlas, frames, color, flipped);
                 spriteBatch.End();
             }

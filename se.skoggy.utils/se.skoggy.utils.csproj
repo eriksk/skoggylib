@@ -111,6 +111,7 @@
     <Compile Include="Shaders\Shader.cs" />
     <Compile Include="Shaders\ShaderLoader.cs" />
     <Compile Include="Shaders\ShaderParameters.cs" />
+    <Compile Include="Shaders\Stock\BloomShader.cs" />
     <Compile Include="Shaders\Stock\ColorFilterShader.cs" />
     <Compile Include="Shaders\Stock\ColorFilterShaderParameters.cs" />
     <Compile Include="Shaders\Stock\HorizontalLinesShader.cs" />
