@@ -81,9 +81,6 @@
     <Compile Include="Interpolations\Sine.cs" />
     <Compile Include="Interpolations\SineIn.cs" />
     <Compile Include="Interpolations\SineOut.cs" />
-    <Compile Include="Lighting\Lighting.cs" />
-    <Compile Include="Lighting\Lights\Light.cs" />
-    <Compile Include="Lighting\Lights\LightType.cs" />
     <Compile Include="Logging\ConsoleLogger.cs" />
     <Compile Include="Logging\ILogger.cs" />
     <Compile Include="Logging\MessageType.cs" />
@@ -116,6 +113,7 @@
     <Compile Include="Shaders\Stock\ColorFilterShaderParameters.cs" />
     <Compile Include="Shaders\Stock\HorizontalLinesShader.cs" />
     <Compile Include="Shaders\Stock\HorizontalLinesShaderParameters.cs" />
+    <Compile Include="Shaders\Stock\LightingShader.cs" />
     <Compile Include="Sprites\DynamicTexture.cs" />
     <Compile Include="Sprites\DynamicTextureAtlasLoader.cs" />
     <Compile Include="Sprites\DynamicTextureAtlasManager.cs" />
