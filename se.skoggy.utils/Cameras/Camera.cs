@@ -16,6 +16,7 @@ namespace se.skoggy.utils.Cameras
         protected float scale, targetScale;
         private Rectangle _boundary;
         private bool _useBoundary;
+        private float _rotation;
 
         public Camera(Vector2 center)
         {
@@ -45,6 +46,11 @@ namespace se.skoggy.utils.Cameras
         public float MaxZoom { get; set; }
         public float MinZoom { get; set; }
         public float Scale { get { return scale; } }
+
+        public float Rotation 
+        {
+            get { return _rotation; }
+        }
 
         public void SetSize(int Width, int Height)
         {

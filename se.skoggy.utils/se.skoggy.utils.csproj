@@ -66,6 +66,7 @@
     <Compile Include="Cameras\Camera.cs" />
     <Compile Include="Collections\Range.cs" />
     <Compile Include="GameObjects\GameObject.cs" />
+    <Compile Include="GameObjects\PhysicsGameObject.cs" />
     <Compile Include="GameObjects\PoolableGameObject.cs" />
     <Compile Include="Gleed\GleedMapLoader.cs" />
     <Compile Include="Gleed\Model\GleedMap.cs" />
@@ -89,6 +90,12 @@
     <Compile Include="MathUtils\Transform.cs" />
     <Compile Include="Metrics\TimerTrig.cs" />
     <Compile Include="Particles\PoolableParticleManager.cs" />
+    <Compile Include="Physics\Construction\PhysicsFactory.cs" />
+    <Compile Include="Physics\Objects\IPhysicsBody.cs" />
+    <Compile Include="Physics\PhysicsWorld.cs" />
+    <Compile Include="Physics\Rendering\DebugViewCamera.cs" />
+    <Compile Include="Physics\Rendering\DebugViewMonoGame.cs" />
+    <Compile Include="Physics\Rendering\PrimitiveBatch.cs" />
     <Compile Include="Ranges\ColorRange.cs" />
     <Compile Include="Ranges\FloatRange.cs" />
     <Compile Include="Particles\ParticleEmitterSettings.cs" />
@@ -119,6 +126,7 @@
     <Compile Include="Sprites\DynamicTextureAtlasManager.cs" />
     <Compile Include="Sprites\SpriteSheet.cs" />
     <Compile Include="Sprites\TextureAtlas.cs" />
+    <Compile Include="Sprites\TextureAtlasCache.cs" />
     <Compile Include="Sprites\TextureAtlasPart.cs" />
     <Compile Include="TMX\TmxMapData.cs" />
     <Compile Include="TMX\TmxMapDataLoader.cs" />
@@ -145,6 +153,9 @@
     <Compile Include="UI\TextAlign.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Reference Include="FarseerPhysics.Portable">
+      <HintPath>..\..\..\Shinobi\packages\FarseerPhysics.Portable.3.5.1\lib\portable-net4+sl4+wp8+win8\FarseerPhysics.Portable.dll</HintPath>
+    </Reference>
     <Reference Include="MonoGame.Framework, Version=3.1.2.0, Culture=neutral, processorArchitecture=MSIL" />
     <Reference Include="Newtonsoft.Json">
       <HintPath>..\..\..\choppertest\ChopperTest\packages\Newtonsoft.Json.6.0.4\lib\net40\Newtonsoft.Json.dll</HintPath>

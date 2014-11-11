@@ -13,7 +13,9 @@ namespace se.skoggy.utils.Sprites
         public DynamicTextureAtlasData Load(string path)
         {
             var json = File.ReadAllText(path);
-            return JsonConvert.DeserializeObject<DynamicTextureAtlasData>(json, new JsonConverter[]{ new DynamicTextureAtlasDataJsonConverter() });
+            var atlasData = JsonConvert.DeserializeObject<DynamicTextureAtlasData>(json, new JsonConverter[]{ new DynamicTextureAtlasDataJsonConverter() });
+            atlasData.Name = Path.GetFileNameWithoutExtension(path);
+            return atlasData;
         }
     }
 
@@ -54,6 +56,14 @@ namespace se.skoggy.utils.Sprites
     {
         public DynamicTextureAtlasDataFrame[] frames;
         public DynamicTextureAtlasDataMeta meta;
+
+        [JsonIgnore]
+        public string Name { get; set; }
+
+        public override string ToString()
+        {
+            return Name;
+        }
     }
 
     public class DynamicTextureAtlasDataMeta
