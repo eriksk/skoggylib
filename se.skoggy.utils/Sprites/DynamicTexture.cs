@@ -11,13 +11,15 @@ namespace se.skoggy.utils.Sprites
     {
         public readonly Texture2D Texture;
         public readonly Rectangle Source;
+        public readonly string AtlasName;
         public readonly string Name;
 
-        public DynamicTexture(string name, Texture2D texture, Rectangle source)
+        public DynamicTexture(string atlasName, string name, Texture2D texture, Rectangle source)
         {
             if (name == null) throw new ArgumentNullException("name");
             if (texture == null) throw new ArgumentNullException("texture");
-        
+
+            AtlasName = atlasName;
             Texture = texture;
             Source = source;
             Name = name;

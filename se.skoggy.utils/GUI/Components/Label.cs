@@ -11,5 +11,10 @@ namespace se.skoggy.utils.GUI.Components
             : base(context)
         {
         }
+
+        public override float Height
+        {
+            get { return Font.MeasureString(Text).Y * scale.Y; }
+        }
     }
 }

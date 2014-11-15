@@ -3,6 +3,7 @@ using FarseerPhysics;
 using FarseerPhysics.Dynamics;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using se.skoggy.utils.Physics;
 using se.skoggy.utils.Physics.Objects;
 
 namespace se.skoggy.utils.GameObjects
@@ -39,16 +40,16 @@ namespace se.skoggy.utils.GameObjects
 
         public override GameObject SetPosition(Vector2 position)
         {
-            this.position = ConvertUnits.ToSimUnits(position);
-            Body.Position = position;
+            Body.Position = position.ToSimUnits();
+            this.position = position;
             return this;
         }
 
         public override GameObject SetPosition(float x, float y)
         {
-            this.position.X = ConvertUnits.ToSimUnits(x);
-            this.position.Y = ConvertUnits.ToSimUnits(y);
-            Body.Position = position;
+            this.position.X = x;
+            this.position.Y = y;
+            Body.Position = position.ToSimUnits();
             return this;
         }
 

@@ -73,6 +73,7 @@
     <Compile Include="Graphics\DrawableRectangle.cs" />
     <Compile Include="GUI\Components\Button.cs" />
     <Compile Include="GUI\Components\Label.cs" />
+    <Compile Include="GUI\Components\SwitchList.cs" />
     <Compile Include="GUI\Components\VerticalList.cs" />
     <Compile Include="GUI\GuiComponent.cs" />
     <Compile Include="GUI\GuiContext.cs" />
@@ -113,6 +114,7 @@
     <Compile Include="Ranges\Gravity.cs" />
     <Compile Include="Ranges\Vector2Range.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Reflection\ReflectionHelpers.cs" />
     <Compile Include="Screens\GuiBaseScreen.cs" />
     <Compile Include="Services\Locators\DuplicateServiceRegisterException.cs" />
     <Compile Include="Services\Locators\NotRegisteredTypeException.cs" />

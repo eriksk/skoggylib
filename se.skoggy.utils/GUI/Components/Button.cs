@@ -28,6 +28,11 @@ namespace se.skoggy.utils.GUI.Components
                 OnButtonClicked();
         }
 
+        public override float Height
+        {
+            get { return Font.MeasureString(Text).Y*scale.Y; }
+        }
+
         public override void Update(float dt, InputState input)
         {
             if (HasFocus && input.ButtonClicked(Buttons.A))
@@ -57,7 +62,7 @@ namespace se.skoggy.utils.GUI.Components
                     (int)(position.Y - textSize.Y / 2f) - padding,
                     (int)textSize.X + padding,
                     (int)textSize.Y + padding), 
-                    BackgroundColor, 
+                    HasFocus ? SelectedColor : BackgroundColor, 
                     Color.Transparent)
                 .Draw(spriteBatch);
 

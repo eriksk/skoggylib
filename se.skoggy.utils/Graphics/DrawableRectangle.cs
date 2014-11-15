@@ -47,5 +47,23 @@ namespace se.skoggy.utils.Graphics
             spriteBatch.Draw(pixel, new Rectangle(rectangle.Left, rectangle.Top, rectangle.Width, 1), outlineColor); // top
             spriteBatch.Draw(pixel, new Rectangle(rectangle.Left, rectangle.Bottom, rectangle.Width + 1, 1), outlineColor); // bottom
         }
+
+        public void DrawGrid(SpriteBatch spriteBatch,  int cellSize)
+        {
+            int cols = Width/cellSize;
+            int rows = Height/cellSize;
+
+            for (int row = 0; row < rows; row++)
+            {
+                spriteBatch.Draw(pixel, new Rectangle(rectangle.Left, rectangle.Top + row * cellSize, rectangle.Width, 1), outlineColor); // top
+                for (int col = 0; col < cols; col++)
+                {
+                    spriteBatch.Draw(pixel, new Rectangle(rectangle.Left + col * cellSize, rectangle.Top, 1, rectangle.Height), outlineColor); // left                    
+                }
+            }
+
+            spriteBatch.Draw(pixel, new Rectangle(rectangle.Right, rectangle.Top, 1, rectangle.Height), outlineColor); // right
+            spriteBatch.Draw(pixel, new Rectangle(rectangle.Left, rectangle.Bottom, rectangle.Width, 1), outlineColor); // bottom 
+        }
     }
 }

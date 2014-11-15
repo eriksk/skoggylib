@@ -30,6 +30,12 @@ namespace se.skoggy.utils.GUI
             get { return _pixel; }
         }
 
+        public void FocusFirst()
+        {
+            if(_components.Count > 0)
+                SetFocus(_components.First());
+        }
+
         public void SetFocus(GuiComponent component)
         {
             if (component == null)

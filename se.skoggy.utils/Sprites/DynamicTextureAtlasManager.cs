@@ -25,6 +25,11 @@ namespace se.skoggy.utils.Sprites
             _atlasNames = new List<string>();
         }
 
+        public List<string> All 
+        {
+            get { return _textures.Keys.ToList(); }
+        }
+
         public bool ContainsAtlasWithName(string name)
         {
             return _atlasNames.Contains(name);
@@ -43,7 +48,7 @@ namespace se.skoggy.utils.Sprites
                 if (_textures.ContainsKey(assetName))
                     throw new ArgumentException(string.Format("'{0}' is already defined, loading dynamic atlas '{1}'", assetName, atlasName));
 
-                _textures.Add(assetName, new DynamicTexture(assetName, texture, frame.frame));
+                _textures.Add(assetName, new DynamicTexture(atlasData.Name, assetName, texture, frame.frame));
             }
         }
 
@@ -59,7 +64,7 @@ namespace se.skoggy.utils.Sprites
                 if (_textures.ContainsKey(assetName))
                     throw new ArgumentException(string.Format("'{0}' is already defined, loading dynamic atlas '{1}'", assetName, atlasName));
 
-                _textures.Add(assetName, new DynamicTexture(assetName, texture, frame.frame));
+                _textures.Add(assetName, new DynamicTexture(atlasData.Name, assetName, texture, frame.frame));
             }
         }
 
@@ -73,5 +78,6 @@ namespace se.skoggy.utils.Sprites
 
             return _textures[name];
         }
+
     }
 }

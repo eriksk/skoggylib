@@ -24,6 +24,11 @@ namespace se.skoggy.utils.GUI
         public void AddChild(GuiComponent component)
         {
             _children.Add(component);
+            OnChildAdded(component);
+        }
+
+        protected virtual void OnChildAdded(GuiComponent child)
+        {
         }
 
         protected GuiContext Context
@@ -31,10 +36,17 @@ namespace se.skoggy.utils.GUI
             get { return _context; }
         }
         public Color BackgroundColor { get; set; }
+        public Color SelectedColor { get; set; }
         public object Tag { get; set; }
         public string Text { get; set; }
         public string Name { get; set; }
         public SpriteFont Font { get; set; }
+        public abstract float Height { get; }
+
+        public List<GuiComponent> Children
+        {
+            get { return _children; }
+        }
 
         public bool HasFocus 
         {

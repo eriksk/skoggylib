@@ -5,6 +5,7 @@ using System.Text;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using se.skoggy.utils.Cameras;
 using se.skoggy.utils.GUI;
 using se.skoggy.utils.Input;
 
@@ -14,7 +15,7 @@ namespace se.skoggy.utils.Screens
     {
         private GuiContext _guiContext;
         private SpriteFont _guifont;
-        private GamePadState _oldPad, _pad;
+        private Camera _guiCam;
 
         protected GuiBaseScreen(IGameContext context, string name, int virtualWidth, int virtualHeight) 
             : base(context, name, virtualWidth, virtualHeight)
@@ -28,6 +29,8 @@ namespace se.skoggy.utils.Screens
             _guiContext = new GuiContext(pixel);
 
             _guifont = content.Load<SpriteFont>(FontName);
+            _guiCam = new Camera(new Vector2());
+            _guiCam = new Camera(new Vector2(VirtualResolution.Width / 2, VirtualResolution.Height / 2));
             base.Load();
         }
 
@@ -48,15 +51,13 @@ namespace se.skoggy.utils.Screens
 
         public override void Update(float dt)
         {
-            _oldPad = _pad;
-            _pad = GamePad.GetState(PlayerIndex.One);
-            _guiContext.Update(dt, new InputState(_pad, _oldPad));
+            _guiCam.Update(dt);
             base.Update(dt);
         }
 
         public override void Draw()
         {
-            spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp, null, null, null, cam.View);
+            spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp, null, null, null, _guiCam.View);
             _guiContext.Draw(spriteBatch);
             spriteBatch.End();
             base.Draw();
