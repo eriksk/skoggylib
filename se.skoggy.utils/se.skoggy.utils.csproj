@@ -141,6 +141,7 @@
     <Compile Include="TMX\TmxMapLayer.cs" />
     <Compile Include="TMX\TmxMapObject.cs" />
     <Compile Include="TMX\TmxTileSet.cs" />
+    <Compile Include="Tweening\Stock\AlphaTween.cs" />
     <Compile Include="UI\Cursor.cs" />
     <Compile Include="Utils\MathUtils.cs" />
     <Compile Include="Utils\Rand.cs" />

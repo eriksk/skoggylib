@@ -110,6 +110,20 @@ namespace se.skoggy.utils.GameObjects
             spriteBatch.Draw(texture, position, source, color, rotation, originInPixels, scale, flip, 0f);
         }
 
+        public virtual void Draw(SpriteBatch spriteBatch, Color tint)
+        {
+            originInPixels.X = source.Width * origin.X;
+            originInPixels.Y = source.Height * origin.Y;
+
+            Color clr = color;
+            clr.R = (byte)(clr.R * (tint.R / 255f));
+            clr.G = (byte)(clr.G * (tint.G / 255f));
+            clr.B = (byte)(clr.B * (tint.B / 255f));
+            clr.A = (byte)(clr.A * (tint.A / 255f));
+
+            spriteBatch.Draw(texture, position, source, clr, rotation, originInPixels, scale, flip, 0f);
+        }
+
         public GameObject Clone()
         {
             var clone = new GameObject(texture);
