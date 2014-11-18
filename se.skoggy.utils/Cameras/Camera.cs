@@ -17,6 +17,7 @@ namespace se.skoggy.utils.Cameras
         private Rectangle _boundary;
         private bool _useBoundary;
         private float _rotation;
+        private CameraShaker _shaker;
 
         public Camera(Vector2 center)
         {
@@ -33,6 +34,7 @@ namespace se.skoggy.utils.Cameras
             MinZoom = 2f;
             _boundary = new Rectangle();
             _useBoundary = false;
+            _shaker = new CameraShaker();
         }
 
         public void SetBoundary(Rectangle area)
@@ -46,6 +48,7 @@ namespace se.skoggy.utils.Cameras
         public float MaxZoom { get; set; }
         public float MinZoom { get; set; }
         public float Scale { get { return scale; } }
+        public Vector2 Offset { get; set; }
 
         public float Rotation 
         {
@@ -58,10 +61,16 @@ namespace se.skoggy.utils.Cameras
             center.Y = Height / 2;
         }
 
+        public void Shake(int duration, float mag)
+        {
+            _shaker.Start(duration, mag);
+        }
+
         public Matrix GetParallaxView(Vector2 parallax)
         {
             return Matrix.CreateRotationZ(rotation) *
                    Matrix.CreateTranslation(new Vector3(position.X * parallax.X, position.Y * parallax.Y, 0f)) *
+                   Matrix.CreateTranslation(Offset.X, Offset.Y, 0f) *
                    Matrix.CreateScale(scale) *
                    Matrix.CreateTranslation(center.X, center.Y, 0f);
         }
@@ -72,6 +81,7 @@ namespace se.skoggy.utils.Cameras
             {
                 return Matrix.CreateRotationZ(rotation) *
                        Matrix.CreateTranslation(position.X, position.Y, 0f) *
+                       Matrix.CreateTranslation(Offset.X, Offset.Y, 0f) *
                        Matrix.CreateScale(scale) *
                        Matrix.CreateTranslation(center.X, center.Y, 0f);
             }
@@ -161,7 +171,9 @@ namespace se.skoggy.utils.Cameras
         }
 
         public virtual void Update(float dt)
-        {            
+        {   
+            _shaker.Update(dt, this);
+
             position.X = movementInterpolation.Apply(position.X, target.X, Speed);
             position.Y = movementInterpolation.Apply(position.Y, target.Y, Speed);
 

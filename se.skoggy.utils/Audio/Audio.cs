@@ -8,7 +8,7 @@ using Microsoft.Xna.Framework.Media;
 
 namespace se.skoggy.utils.Audio
 {
-    public class Audio
+    public class Audio : IAudio
     {
         protected ContentManager content;
         protected string audioFilesDirectoryName;
@@ -50,7 +50,20 @@ namespace se.skoggy.utils.Audio
         {
             sounds[name].Stop();
             sounds[name].Volume = sfxVolume;
+            sounds[name].IsLooped = false;
             sounds[name].Play();
+        }
+
+        public void PlayLoopedSound(string name)
+        {
+            sounds[name].Volume = sfxVolume;
+            sounds[name].IsLooped = true;
+            sounds[name].Play();
+        }
+
+        public void StopLoopedSound(string name)
+        {
+            sounds[name].Stop();
         }
 
         public void Play(string name, float pan, float volume)

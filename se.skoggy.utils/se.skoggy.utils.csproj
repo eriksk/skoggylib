@@ -62,8 +62,10 @@
     <Compile Include="Animations\TreeAnimations\Events\PositionEvent.cs" />
     <Compile Include="Animations\TreeAnimations\Events\RotationEvent.cs" />
     <Compile Include="Audio\Audio.cs" />
+    <Compile Include="Audio\IAudio.cs" />
     <Compile Include="Bootstrap\IGameBootstrapper.cs" />
     <Compile Include="Cameras\Camera.cs" />
+    <Compile Include="Cameras\CameraShaker.cs" />
     <Compile Include="Collections\Range.cs" />
     <Compile Include="GameObjects\GameObject.cs" />
     <Compile Include="GameObjects\PhysicsGameObject.cs" />
@@ -117,6 +119,7 @@
     <Compile Include="Reflection\ReflectionHelpers.cs" />
     <Compile Include="Screens\GuiBaseScreen.cs" />
     <Compile Include="Services\Locators\DuplicateServiceRegisterException.cs" />
+    <Compile Include="Services\Locators\IServiceRegistrator.cs" />
     <Compile Include="Services\Locators\NotRegisteredTypeException.cs" />
     <Compile Include="Services\Locators\Service.cs" />
     <Compile Include="Services\Locators\ServiceLocator.cs" />
