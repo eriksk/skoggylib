@@ -95,5 +95,10 @@ namespace se.skoggy.utils.Audio
                 song.Value.Stop();
             }
         }
+
+        public void Dispose()
+        {
+            
+        }
     }
 }

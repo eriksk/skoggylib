@@ -5,7 +5,7 @@ using System.Text;
 
 namespace se.skoggy.utils.Audio
 {
-    public interface IAudio
+    public interface IAudio : IDisposable
     {
         float SfxVolume { get; set; }
         float MusicVolume { get; set; }

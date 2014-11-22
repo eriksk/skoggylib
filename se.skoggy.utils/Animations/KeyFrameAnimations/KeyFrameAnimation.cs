@@ -76,7 +76,12 @@ namespace se.skoggy.utils.Animations.KeyFrameAnimations
             get { return _keyFrames.Count == 0 ? null : (_currentFrame + 1 > _keyFrames.Count - 1 ? (Loop ? _keyFrames[0] : CurrentFrame) : _keyFrames[_currentFrame + 1]); }
         }
 
-        public void Update(float dt)
+        public KeyFrame GetNextFrameRegardless()
+        {
+            return _currentFrame > _keyFrames.Count - 1 ? _keyFrames[0] : _keyFrames[_currentFrame];
+        }
+
+        public void Update(float dt, bool trigEvents = true)
         {
             Current += dt;
 
@@ -87,7 +92,8 @@ namespace se.skoggy.utils.Animations.KeyFrameAnimations
 
             if (Current >= durationPerFrame)
             {
-                TrigEvents();
+                if (trigEvents)
+                    TrigEvents();
 
                 Current = 0f;
                 _currentFrame++;
@@ -160,6 +166,5 @@ namespace se.skoggy.utils.Animations.KeyFrameAnimations
                 CurrentFrame.DrawDebugPoints(frames, spriteBatch, atlas, point, position, scale);
             }
         }
-
     }
 }

@@ -23,5 +23,20 @@ namespace se.skoggy.utils.Physics
         {
             return ConvertUnits.ToSimUnits(val);
         }
+
+        public static float ToDisplayUnits(this float val)
+        {
+            return ConvertUnits.ToDisplayUnits(val);
+        }
+
+        public static Vector2 ToDisplayUnits(this Vector2 val)
+        {
+            return ConvertUnits.ToDisplayUnits(val);
+        }
+
+        public static float ToDisplayUnits(this int val)
+        {
+            return ConvertUnits.ToDisplayUnits(val);
+        }
     }
 }

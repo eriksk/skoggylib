@@ -24,7 +24,9 @@ namespace se.skoggy.utils.GameObjects
 
     public class PhysicsGameObject : GameObject, IPhysicsBody
     {
-        private readonly List<GameObjectAttachment> _attachments; 
+        private readonly List<GameObjectAttachment> _attachments;
+        public string Name { get; set; }
+        public Vector2 InitialPosition;
 
         public PhysicsGameObject()
             : base()

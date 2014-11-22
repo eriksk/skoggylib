@@ -6,6 +6,7 @@ using FarseerPhysics.Dynamics;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
+using se.skoggy.utils.Physics.Events;
 using se.skoggy.utils.Physics.Rendering;
 
 namespace se.skoggy.utils.Physics
@@ -16,9 +17,12 @@ namespace se.skoggy.utils.Physics
         private DebugViewMonoGame _debug;
         private DebugViewCamera2D _cam;
 
+        private readonly PhysicsEvents _events;
+
         public PhysicsWorld(Vector2 gravity)
         {
             _world = new World(gravity);
+            _events = new PhysicsEvents();
         }
 
         public void LoadDebug(ContentManager content, GraphicsDevice device, string debugFontName)
@@ -26,6 +30,11 @@ namespace se.skoggy.utils.Physics
             _debug = new DebugViewMonoGame(_world);
             _debug.LoadContent(device, content, debugFontName);
             _cam = new DebugViewCamera2D(device);
+        }
+
+        public PhysicsEvents Events 
+        {
+            get { return _events; }
         }
 
         public World World
@@ -54,6 +63,28 @@ namespace se.skoggy.utils.Physics
                 throw new Exception("Call LoadDebug first");
 
             _debug.RenderDebugData(_cam.SimProjection, _cam.SimView);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="position">In sim units</param>
+        /// <param name="force">Impulse force</param>
+        /// <param name="reach">In sim units</param>
+        public void CreateExplosionForce(Vector2 position, float force, float reach)
+        {
+            foreach (var body in _world.BodyList)
+            {
+                float distance = Vector2.Distance(body.Position, position);
+                if(distance > reach) continue;
+
+                float angle = (float)Math.Atan2(body.Position.Y - position.Y, body.Position.X - position.X);
+                body.ApplyLinearImpulse(new Vector2((float)Math.Cos(angle), (float)Math.Sin(angle)) * force, position);
+                if (body.UserData != null)
+                {
+                    Events.InvokeOnBodyHitByExplosion(body, force, reach, distance);
+                }
+            }
         }
     }
 }

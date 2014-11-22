@@ -49,6 +49,7 @@ namespace se.skoggy.utils.Cameras
         public float MinZoom { get; set; }
         public float Scale { get { return scale; } }
         public Vector2 Offset { get; set; }
+        public float OffsetRotation { get; set; }
 
         public float Rotation 
         {
@@ -69,6 +70,7 @@ namespace se.skoggy.utils.Cameras
         public Matrix GetParallaxView(Vector2 parallax)
         {
             return Matrix.CreateRotationZ(rotation) *
+                   Matrix.CreateRotationZ(OffsetRotation) *
                    Matrix.CreateTranslation(new Vector3(position.X * parallax.X, position.Y * parallax.Y, 0f)) *
                    Matrix.CreateTranslation(Offset.X, Offset.Y, 0f) *
                    Matrix.CreateScale(scale) *
@@ -80,6 +82,7 @@ namespace se.skoggy.utils.Cameras
             get
             {
                 return Matrix.CreateRotationZ(rotation) *
+                       Matrix.CreateRotationZ(OffsetRotation) *
                        Matrix.CreateTranslation(position.X, position.Y, 0f) *
                        Matrix.CreateTranslation(Offset.X, Offset.Y, 0f) *
                        Matrix.CreateScale(scale) *

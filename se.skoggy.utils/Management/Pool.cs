@@ -19,6 +19,7 @@ namespace se.skoggy.utils.Management
         }
 
         public int Count { get { return count; } }
+        public int Capacity { get { return capacity; }}
 
         public T this[int index] 
         {
@@ -58,5 +59,6 @@ namespace se.skoggy.utils.Management
             items[index] = temp;
             count--;
         }
+
     }
 }
