@@ -29,5 +29,10 @@ namespace se.skoggy.utils
         {
             return min + (max - min) * Next();
         }
+
+        public static bool Bool()
+        {
+            return Next(2) == 0;
+        }
     }
 }

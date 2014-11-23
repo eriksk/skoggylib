@@ -46,9 +46,18 @@ namespace se.skoggy.utils.Audio
             songs.Add(name, content.Load<SoundEffect>(string.Format("{0}/{1}", audioFilesDirectoryName, name)).CreateInstance());
         }
 
-        public void Play(string name) 
+        public void Play(string name)
         {
             sounds[name].Stop();
+            sounds[name].Pitch = 0f;
+            sounds[name].Volume = sfxVolume;
+            sounds[name].IsLooped = false;
+            sounds[name].Play();
+        }
+        public void Play(string name, float pitch)
+        {
+            sounds[name].Stop();
+            sounds[name].Pitch = pitch;
             sounds[name].Volume = sfxVolume;
             sounds[name].IsLooped = false;
             sounds[name].Play();

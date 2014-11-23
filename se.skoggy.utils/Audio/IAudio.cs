@@ -11,6 +11,7 @@ namespace se.skoggy.utils.Audio
         float MusicVolume { get; set; }
 
         void Play(string name);
+        void Play(string name, float pitch);
         void PlayLoopedSound(string name);
         void StopLoopedSound(string name);
         void Play(string name, float pan, float volume);

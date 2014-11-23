@@ -89,6 +89,11 @@ namespace se.skoggy.utils.Audio
             //sound.State = SoundState.Playing;
         }
 
+        public void Play(string name, float pitch)
+        {
+            
+        }
+
         public void PlayLoopedSound(string name)
         {
             var sound = _sounds[name];
