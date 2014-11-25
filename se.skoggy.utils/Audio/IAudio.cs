@@ -17,6 +17,6 @@ namespace se.skoggy.utils.Audio
         void Play(string name, float pan, float volume);
         void PlaySong(string name);
         void StopSong(string name);
-        void StopAllSongs(string name);
+        void StopAllSongs();
     }
 }

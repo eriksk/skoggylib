@@ -127,7 +127,7 @@ namespace se.skoggy.utils.Audio
             throw new NotImplementedException();
         }
 
-        public void StopAllSongs(string name)
+        public void StopAllSongs()
         {
             throw new NotImplementedException();
         }

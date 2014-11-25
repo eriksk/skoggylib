@@ -97,7 +97,7 @@ namespace se.skoggy.utils.Audio
             song.Stop();
         }
 
-        public void StopAllSongs(string name)
+        public void StopAllSongs()
         {
             foreach (var song in songs)
             {

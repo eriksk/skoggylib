@@ -4,10 +4,11 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using se.skoggy.utils.Tweening;
 
 namespace se.skoggy.utils.UI
 {
-    public class Text
+    public class Text : ITweenable
     {
         public Vector2 position, origin, scale;
         public Color color;
@@ -63,6 +64,57 @@ namespace se.skoggy.utils.UI
                 Clean(font);
 
             spriteBatch.DrawString(font, text, position, color, rotation, origin, scale, flip, 0f);
+        }
+
+        public void SetPosition(float x, float y)
+        {
+            position.X = x;
+            position.Y = y;
+        }
+
+        public void SetPositionX(float x)
+        {
+            position.X = x;
+        }
+
+        public void SetPositionY(float y)
+        {
+            position.Y = y;
+        }
+
+        public void AddRotation(float rotationToAdd)
+        {
+            rotation += rotationToAdd;
+        }
+
+        public void SetRotation(float rotation)
+        {
+            this.rotation = rotation;
+        }
+
+        public void SetScale(float scalar)
+        {
+            scale.X = scalar;
+            scale.Y = scalar;
+        }
+
+        public void SetScale(float x, float y)
+        {
+            scale.X = x;
+            scale.Y = y;
+        }
+
+        public void SetAlpha(float a)
+        {
+            color.A = (byte)(a*255f);
+        }
+
+        public void SetColor(float r, float g, float b, float a)
+        {
+            color.R = (byte)(r * 255f);
+            color.G = (byte)(g * 255f);
+            color.B = (byte)(b * 255f);
+            color.A = (byte)(a * 255f);
         }
     }
 }

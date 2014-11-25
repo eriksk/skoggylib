@@ -76,6 +76,7 @@
     <Compile Include="Graphics\DrawableGrid.cs" />
     <Compile Include="Graphics\DrawableLine.cs" />
     <Compile Include="Graphics\DrawableRectangle.cs" />
+    <Compile Include="Graphics\Overlay.cs" />
     <Compile Include="GUI\Components\Button.cs" />
     <Compile Include="GUI\Components\Label.cs" />
     <Compile Include="GUI\Components\SwitchList.cs" />
@@ -99,6 +100,7 @@
     <Compile Include="Management\Pool.cs" />
     <Compile Include="MathUtils\Rectanglef.cs" />
     <Compile Include="MathUtils\Transform.cs" />
+    <Compile Include="Metrics\EventTimeline.cs" />
     <Compile Include="Metrics\TimerTrig.cs" />
     <Compile Include="Particles\PoolableParticleManager.cs" />
     <Compile Include="Physics\Construction\PhysicsFactory.cs" />
