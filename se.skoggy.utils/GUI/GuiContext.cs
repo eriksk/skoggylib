@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using Microsoft.Xna.Framework.Graphics;
 using se.skoggy.utils.Input;
+using se.skoggy.utils.Services.Locators;
 
 namespace se.skoggy.utils.GUI
 {
@@ -52,8 +53,9 @@ namespace se.skoggy.utils.GUI
             return _focused == component;
         }
 
-        public void Update(float dt, InputState input)
+        public void Update(float dt)
         {
+            var input = ServiceLocator.Context.Locate<IInputState>();
             foreach (var component in _components)
                 component.Update(dt, input);
         }

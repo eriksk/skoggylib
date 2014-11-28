@@ -8,7 +8,7 @@ using se.skoggy.utils.Cameras;
 
 namespace se.skoggy.utils.Management
 {
-    public abstract class Manager<T>
+    public abstract class Manager
     {
         public abstract void Load(ContentManager content);
         public abstract void Update(float dt);

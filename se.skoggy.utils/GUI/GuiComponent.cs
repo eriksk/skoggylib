@@ -60,7 +60,7 @@ namespace se.skoggy.utils.GUI
         {
         }
 
-        public virtual void Update(float dt, InputState input)
+        public virtual void Update(float dt, IInputState input)
         {
             foreach (var child in _children)
             {

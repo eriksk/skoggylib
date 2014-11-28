@@ -33,7 +33,7 @@ namespace se.skoggy.utils.GUI.Components
             get { return Font.MeasureString(Text).Y*scale.Y; }
         }
 
-        public override void Update(float dt, InputState input)
+        public override void Update(float dt, IInputState input)
         {
             if (HasFocus && input.ButtonClicked(Buttons.A))
             {

@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using se.skoggy.utils.Sprites;
 using se.skoggy.utils.Tweening;
 using System;
 using System.Collections.Generic;
@@ -20,8 +21,14 @@ namespace se.skoggy.utils.GameObjects
         public float rotation;
 
         public GameObject()
-            : this(null)
+            : this((Texture2D)null)
         {
+        }
+
+        public GameObject(DynamicTexture texture)
+            : this(texture.Texture)
+        {
+            SetSource(texture.Source);
         }
 
         public GameObject(Texture2D texture)

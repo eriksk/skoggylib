@@ -40,7 +40,7 @@ namespace se.skoggy.utils.GUI.Components
             base.OnFocused();
         }
 
-        public override void Update(float dt, InputState input)
+        public override void Update(float dt, IInputState input)
         {
 
             if (HasFocus)
