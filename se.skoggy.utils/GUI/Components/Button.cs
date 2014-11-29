@@ -47,25 +47,10 @@ namespace se.skoggy.utils.GUI.Components
             {
                 rotation = rotation,
                 position = position,
-                color = color,
+                color = HasFocus ? SelectedColor : color,
                 scale = scale,
                 Content = Text
             };
-
-            Vector2 textSize = Font.MeasureString(Text);
-            const int padding = 8;
-
-            new DrawableRectangle(
-                Context.Pixel, 
-                new Rectangle(
-                    (int)(position.X - textSize.X / 2f) - padding,
-                    (int)(position.Y - textSize.Y / 2f) - padding,
-                    (int)textSize.X + padding,
-                    (int)textSize.Y + padding), 
-                    HasFocus ? SelectedColor : BackgroundColor, 
-                    Color.Transparent)
-                .Draw(spriteBatch);
-
             t.Draw(spriteBatch, Font);
         }
     }

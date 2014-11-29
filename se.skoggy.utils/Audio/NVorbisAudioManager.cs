@@ -63,6 +63,15 @@ namespace se.skoggy.utils.Audio
             _streamer.Dispose();
         }
 
+        public void Update()
+        {
+        }
+
+        public void SetEffect(string name, float value)
+        {
+            
+        }
+
         public void Prepare()
         {
             foreach (var sound in _sounds)

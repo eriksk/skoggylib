@@ -65,6 +65,11 @@
     <Compile Include="Audio\IAudio.cs" />
     <Compile Include="Audio\NVorbisAudioManager.cs" />
     <Compile Include="Audio\NVorbis\OggStream.cs" />
+    <Compile Include="Audio\OpenAl\ALHelpers.cs" />
+    <Compile Include="Audio\OpenAl\AudioEffect.cs" />
+    <Compile Include="Audio\OpenAl\IAudioFileLoader.cs" />
+    <Compile Include="Audio\OpenAl\OpenAlAudioManager.cs" />
+    <Compile Include="Audio\OpenAl\Sound.cs" />
     <Compile Include="Bootstrap\IGameBootstrapper.cs" />
     <Compile Include="Cameras\Camera.cs" />
     <Compile Include="Cameras\CameraShaker.cs" />

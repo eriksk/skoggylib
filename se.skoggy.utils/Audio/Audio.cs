@@ -28,6 +28,15 @@ namespace se.skoggy.utils.Audio
             musicVolume = 1f;
         }
 
+        public void Update()
+        {
+        }
+
+        public void SetEffect(string name, float value)
+        {
+            
+        }
+
         public float SfxVolume { get { return sfxVolume; } set { sfxVolume = value; } }
 
         public float MusicVolume

@@ -49,7 +49,8 @@ namespace se.skoggy.utils.Physics
 
         public void Update(float dt)
         {
-            _world.Step((1f / 30f) * (dt / 16f));
+            if(dt > 0f)
+                _world.Step((1f / 30f) * (dt / 16f));
 
             if (_cam == null)
                 return;

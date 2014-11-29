@@ -55,11 +55,15 @@ namespace se.skoggy.utils.Screens
             base.Update(dt);
         }
 
-        public override void Draw()
+        protected virtual void DrawGui()
         {
             spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp, null, null, null, _guiCam.View);
             _guiContext.Draw(spriteBatch);
             spriteBatch.End();
+        }
+
+        public override void Draw()
+        {
             base.Draw();
         }
     }
